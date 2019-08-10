@@ -1,0 +1,12 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+#shipping_conditions_metabox .select2-container .select2-search__field {
+    width: 400px !important;
+}
+
+#payment_conditions_metabox .select2-container .select2-search__field {
+    width: 400px !important;
+}
