@@ -26,7 +26,13 @@ require_once $_tests_dir . '/includes/functions.php';
  */
 function _manually_load_plugin() {
 	$_core_dir = getenv( 'WP_CORE_DIR' );
-	require $_core_dir . '/wp-content/plugins/woocommerce/woocommerce.php';
+
+	if($_core_dir){
+		require $_core_dir . '/wp-content/plugins/woocommerce/woocommerce.php';
+	}else{
+		require dirname(dirname( dirname( __FILE__ ) )) . '/woocommerce/woocommerce.php';
+	}
+
 	require dirname( dirname( __FILE__ ) ) . '/restricted-shipping-payment-for-woocommerce.php';
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
