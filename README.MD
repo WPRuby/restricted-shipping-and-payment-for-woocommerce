@@ -11,12 +11,11 @@
 
 A simplistic plugin for excluding shipping methods based on multiple rules such as shipping class, package weight and cart totals.
 
-
 ## Installation 
 
 1. Upload `restricted-shipping-and-payment-for-woocommerce.php` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. A new admin menu item `Shipping Conditions` will be added.
+3. A new admin menu item `Shipping Conditions` and `Payment Conditions` will be added.
 
 
 ## Screenshots 
@@ -26,28 +25,7 @@ A simplistic plugin for excluding shipping methods based on multiple rules such 
 
 
 ## Changelog 
-### 2.0.0
-* ADDED: New Rule: Postcode.
-* ADDED: New Rule: City.
-* ADDED: New Rule: State.
-* ADDED: New Rule: Product Category.
-* ADDED: New Rule: Product Tag.
-* ADDED: New Rule: Product Attribute.
-* ADDED: New Rule: Cart has downloadable products.
-* ADDED: New Rule: Cart has virtual products.
-* ADDED: New Rule: Total Cart Quantity.
-* ADDED: Complete code refactoring.
-* FIXED: Adding new payment rule for condition does not refresh the operators.
-
-### 1.2.0 
-* Fixed: The exclusion logic of payment gateways.
-
-### 1.1.1
-* Fixed: remove unnecessary CSS and JS files loading.
-
-### 1.1.0
-* Add the ability to exclude shipping methods by coupon code
-
+``
 ### 1.0.0 
 * Initial release
 
