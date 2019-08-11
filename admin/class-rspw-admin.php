@@ -139,22 +139,21 @@ class RSPW_Admin {
 		register_post_type( RSPW_PAYMENT_CONDITION, $args );
 	}
 
-	public function get_shipping_rule_type_operators() {
-		$rule_type = isset( $_POST['rule_type'] ) ? sanitize_text_field( wp_unslash( $_POST['rule_type'] ) ) : '';
-		$post_id   = isset( $_POST['postID'] ) ? sanitize_text_field( wp_unslash( $_POST['postID'] ) ) : '';
-		$index     = isset( $_POST['index'] ) ? sanitize_text_field( wp_unslash( $_POST['index'] ) ) : '';
-		$rules     = get_post_meta( $post_id, 'shipping_condition_rules', true );
-		$this->print_rules( $rules, $index, $rule_type );
-	}
-
 	/**
 	 * @return bool
 	 */
-	public function get_payment_rule_type_operators() {
-		$rule_type = isset( $_POST['rule_type'] ) ? sanitize_text_field( wp_unslash( $_POST['rule_type'] ) ) : '';
-		$post_id   = isset( $_POST['postID'] ) ? sanitize_text_field( wp_unslash( intval( $_POST['postID'] ) ) ) : '';
-		$index     = isset( $_POST['index'] ) ? sanitize_text_field( wp_unslash( intval( $_POST['index'] ) ) ) : '';
-		$rules     = get_post_meta( $post_id, 'payment_condition_rules', true );
+	public function get_rule_type_operators() {
+		$operators_field_nonce = ( isset( $_POST['operators_field_nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['operators_field_nonce'] ) ) : null;
+		if ( is_null( $operators_field_nonce ) || ! wp_verify_nonce( $operators_field_nonce, 'get_rule_type_operators' ) ) {
+			print 'Sorry, your nonce did not verify.';
+			exit;
+		}
+
+		$rule_type      = isset( $_POST['rule_type'] ) ? sanitize_text_field( wp_unslash( $_POST['rule_type'] ) ) : '';
+		$post_id        = isset( $_POST['postID'] ) ? sanitize_text_field( wp_unslash( intval( $_POST['postID'] ) ) ) : '';
+		$index          = isset( $_POST['index'] ) ? sanitize_text_field( wp_unslash( intval( $_POST['index'] ) ) ) : '';
+		$condition_type = isset( $_POST['condition_type'] ) ? sanitize_text_field( wp_unslash( intval( $_POST['condition_type'] ) ) ) : '';
+		$rules          = get_post_meta( $post_id, $condition_type . '_condition_rules', true );
 
 		return $this->print_rules( $rules, $index, $rule_type );
 	}

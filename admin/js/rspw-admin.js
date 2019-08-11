@@ -34,7 +34,9 @@
                     rule_type: rule_type,
                     index: index,
                     postID: postID,
-                    action: 'get_shipping_rule_type_operators'
+                    action: 'get_rule_type_operators',
+                    condition_type: 'shipping',
+                    _nonce: $('#operators_field_nonce').val(),
                 },
                 success: function (response) {
                     $(operator_select).html(response);
@@ -80,7 +82,9 @@
                     rule_type: rule_type,
                     index: index,
                     postID: postID,
-                    action: 'get_payment_rule_type_operators'
+                    action: 'get_rule_type_operators',
+                    condition_type: 'payment',
+                    _nonce: $('#operators_field_nonce').val(),
                 },
                 success: function (response) {
                     $(operator_select).html(response);

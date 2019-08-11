@@ -37,7 +37,7 @@
         <exclude name="Squiz.Commenting.ClassComment.Missing"/>
 	    <exclude name="Generic.Commenting.DocComment"/>
 	    <!-- Temporary -->
-	    <exclude name="WordPress.Security.NonceVerification.Missing"/>
+
 
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">

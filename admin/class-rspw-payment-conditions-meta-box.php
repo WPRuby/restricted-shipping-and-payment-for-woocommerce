@@ -22,7 +22,6 @@
 class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 
 	public function rules_metabox() {
-
 		/**
 		 * Initiate the metabox
 		 */
@@ -86,6 +85,7 @@ class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 		);
 
 		$this->add_rules( $cmb, $group_field_id );
+		wp_nonce_field( 'get_rule_type_operators', 'operators_field_nonce' );
 	}
 
 	/**
