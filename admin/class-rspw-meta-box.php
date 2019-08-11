@@ -37,7 +37,7 @@ abstract class RSPW_Meta_Box {
 	 */
 	public static function get_operators( $rule_type ) {
 		$rule = RSPW_Rules_Factory::make( $rule_type );
-		if(! is_null($rule)){
+		if ( ! is_null( $rule ) ) {
 			return $rule->get_operators_labels();
 		}
 

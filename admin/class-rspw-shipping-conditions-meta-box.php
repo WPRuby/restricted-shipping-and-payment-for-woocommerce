@@ -81,7 +81,7 @@ class RSPW_Shipping_Conditions_Meta_Box extends RSPW_Meta_Box {
 				'name'       => __( 'Operator', 'restricted-shipping-and-payment-for-woocommerce' ),
 				'id'         => 'operator',
 				'type'       => 'select',
-				'options_cb' => array($this, 'get_shipping_operators'),
+				'options_cb' => array( $this, 'get_shipping_operators' ),
 			)
 		);
 
