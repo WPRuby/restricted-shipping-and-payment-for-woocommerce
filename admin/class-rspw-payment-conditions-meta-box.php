@@ -81,7 +81,7 @@ class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 				'name'       => __( 'Operator', 'restricted-shipping-and-payment-for-woocommerce' ),
 				'id'         => 'operator',
 				'type'       => 'select',
-				'options_cb' => 'rspw_get_payment_operators_call',
+				'options_cb' => array($this, 'get_payment_operators'),
 			)
 		);
 
@@ -99,19 +99,19 @@ class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 		}
 		return $available_gateways;
 	}
-}
 
 	/**
 	 * @param $field
 	 *
 	 * @return array
 	 */
-function rspw_get_payment_operators_call( $field ) {
-	/** @var $field CMB2_Field */
-	$index     = $field->group->index;
-	$rule      = get_post_meta( $field->object_id, 'payment_condition_rules', true );
-	$rule_type = ( $rule ) ? $rule[ $index ]['rule_type'] : 'shipping_class';
-	return RSPW_Meta_Box::get_operators( $rule_type );
+	public function get_payment_operators( $field ) {
+		/** @var $field CMB2_Field */
+		$index     = $field->group->index;
+		$rule      = get_post_meta( $field->object_id, 'payment_condition_rules', true );
+		$rule_type = ( $rule ) ? $rule[ $index ]['rule_type'] : 'shipping_class';
+		return RSPW_Meta_Box::get_operators( $rule_type );
+	}
 }
 
 new RSPW_Payment_Conditions_Meta_Box();

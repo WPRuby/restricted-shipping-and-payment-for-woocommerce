@@ -81,7 +81,7 @@ class RSPW_Shipping_Conditions_Meta_Box extends RSPW_Meta_Box {
 				'name'       => __( 'Operator', 'restricted-shipping-and-payment-for-woocommerce' ),
 				'id'         => 'operator',
 				'type'       => 'select',
-				'options_cb' => 'rspw_get_shipping_operators_call',
+				'options_cb' => array($this, 'get_shipping_operators'),
 			)
 		);
 
@@ -92,46 +92,45 @@ class RSPW_Shipping_Conditions_Meta_Box extends RSPW_Meta_Box {
 	 * @return array
 	 */
 	private function get_shipping_methods() {
-		$methods = array();
-		$zones   = WC_Shipping_Zones::get_zones();
+		$shipping_methods = array();
+		$shipping_zones   = WC_Shipping_Zones::get_zones();
 
-		if ( ! isset( $zones[0] ) ) {
-			$rest_of_world                = WC_Shipping_Zones::get_zone_by();
-			$zones[0]                     = $rest_of_world->get_data();
-			$zones[0]['shipping_methods'] = $rest_of_world->get_shipping_methods();
+		if ( ! isset( $shipping_zones[0] ) ) {
+			$rest_of_world_zone                    = WC_Shipping_Zones::get_zone_by();
+			$shipping_zones[0]                     = $rest_of_world_zone->get_data();
+			$shipping_zones[0]['shipping_methods'] = $rest_of_world_zone->get_shipping_methods();
 		}
 
-		foreach ( $zones as $zone ) {
-			if ( ! empty( $zone['shipping_methods'] ) ) {
-				$zone_name = $zone['zone_name'];
+		foreach ( $shipping_zones as $shipping_zone ) {
+			if ( empty( $shipping_zone['shipping_methods'] ) ) {
+				continue;
+			}
 
-				foreach ( $zone['shipping_methods'] as $instance_id => $method_instance ) {
-					$option_id             = $method_instance->get_rate_id();
-					$method_title          = sprintf( __( '&quot;%1$s&quot; (Instance ID: %2$s)', 'restricted-shipping-and-payment-for-woocommerce' ), $method_instance->get_title(), $instance_id );
-					$option_name           = sprintf( __( '%1$s &ndash; %2$s', 'restricted-shipping-and-payment-for-woocommerce' ), $zone_name, $method_title );
-					$methods[ $option_id ] = $option_name;
-				}
+			$zone_name = $shipping_zone['zone_name'];
+			foreach ( $shipping_zone['shipping_methods'] as $instance_id => $method_instance ) {
+				$method_id                      = $method_instance->get_rate_id();
+				$method_name                    = sprintf( __( '[%2$s - ID: %3$s] &ndash; [%1$s]', 'restricted-shipping-and-payment-for-woocommerce' ), $zone_name, $method_instance->get_title(), $instance_id );
+				$shipping_methods[ $method_id ] = $method_name;
 			}
 		}
 
-		return $methods;
+		return $shipping_methods;
+	}
+
+	/**
+	 * @param $field
+	 *
+	 * @return array
+	 */
+	public function get_shipping_operators( $field ) {
+		/** @var $field CMB2_Field */
+		$index     = $field->group->index;
+		$rule      = get_post_meta( $field->object_id, 'shipping_condition_rules', true );
+		$rule_type = ( $rule ) ? $rule[ $index ]['rule_type'] : 'shipping_class';
+		return RSPW_Meta_Box::get_operators( $rule_type );
 	}
 
 
-}
-
-
-/**
- * @param $field
- *
- * @return array
- */
-function rspw_get_shipping_operators_call( $field ) {
-	/** @var $field CMB2_Field */
-	$index     = $field->group->index;
-	$rule      = get_post_meta( $field->object_id, 'shipping_condition_rules', true );
-	$rule_type = ( $rule ) ? $rule[ $index ]['rule_type'] : 'shipping_class';
-	return RSPW_Meta_Box::get_operators( $rule_type );
 }
 
 new RSPW_Shipping_Conditions_Meta_Box();
