@@ -18,9 +18,21 @@ A simplistic plugin for excluding shipping methods based on multiple rules such 
 3. A new admin menu item `Shipping Conditions` and `Payment Conditions` will be added.
 
 
+## Frequently Asked Questions
+= Which rules are available to restrict payment gateways and shipping methods? =
+The following rules are available:
+*   Cart Total
+*   Coupon Code
+*   Customer
+*   Package Total Weight
+*   Billing Country
+*   Shipping Class
+*   Shipping Country
+
+
 ## Screenshots 
-### 1. Shipping Conditions
-[missing image]
+1. Excluding local pickup shipping method in case the total cart weight is less than 5kg.
+2. Excluding Direct Bank Transfer if the Cart Total is less than 400$ or the billing country is the United Kingdom.
 
 
 
