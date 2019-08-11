@@ -109,7 +109,7 @@ class RSPW_Shipping_Conditions_Meta_Box extends RSPW_Meta_Box {
 			$zone_name = $shipping_zone['zone_name'];
 			foreach ( $shipping_zone['shipping_methods'] as $instance_id => $method_instance ) {
 				$method_id                      = $method_instance->get_rate_id();
-				$method_name                    = sprintf( __( '[%2$s - ID: %3$s] &ndash; [%1$s]', 'restricted-shipping-and-payment-for-woocommerce' ), $zone_name, $method_instance->get_title(), $instance_id );
+				$method_name                    = sprintf(  '[%s - ID: %d] &ndash; [%s]' ,$method_instance->get_title(), $instance_id, $zone_name );
 				$shipping_methods[ $method_id ] = $method_name;
 			}
 		}
