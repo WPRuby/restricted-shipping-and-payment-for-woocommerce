@@ -162,7 +162,7 @@ class RSPW {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_admin, 'register_post_types' );
-		$this->loader->add_action( 'wp_ajax_get_rule_type_operators', $plugin_admin, 'get_shipping_rule_type_operators' );
+		$this->loader->add_action( 'wp_ajax_get_rule_type_operators', $plugin_admin, 'get_rule_type_operators' );
 	}
 
 	/**

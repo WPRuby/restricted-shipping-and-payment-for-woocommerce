@@ -143,7 +143,7 @@ class RSPW_Admin {
 	 * @return bool
 	 */
 	public function get_rule_type_operators() {
-		$operators_field_nonce = ( isset( $_POST['operators_field_nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['operators_field_nonce'] ) ) : null;
+		$operators_field_nonce = ( isset( $_POST['_nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['_nonce'] ) ) : null;
 		if ( is_null( $operators_field_nonce ) || ! wp_verify_nonce( $operators_field_nonce, 'get_rule_type_operators' ) ) {
 			print 'Sorry, your nonce did not verify.';
 			exit;
