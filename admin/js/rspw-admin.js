@@ -1,7 +1,7 @@
 (function( $ ) {
 	'use strict';
 
-    // shippiing methods
+    // shipping methods
 	$(function() {
         get_operators_based_on_rule_type();
         $(document).on('cmb2_add_row', function (e, x, row) {

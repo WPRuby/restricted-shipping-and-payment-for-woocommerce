@@ -6,7 +6,7 @@
  * @package           Restricted_Shipping_And_Payment_For_Woocommerce
  *
  * @wordpress-plugin
- * Plugin Name:       Restricted_Shipping_And_Payment_For_Woocommerce
+ * Plugin Name:       Restricted Shipping And Payment For Woocommerce
  * Plugin URI:        https://wpruby.com
  * Description:       Add conditions and rules to enable/disable your WooCommerce shipping methods and Payment gateways.
  * Version:           1.0.0
@@ -47,6 +47,7 @@ class RSPW_Bootstrap {
 
 	/**
 	 * @return RSPW_Bootstrap
+	 * @throws Exception
 	 */
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
@@ -57,9 +58,10 @@ class RSPW_Bootstrap {
 
 	/**
 	 * RSPW_Bootstrap constructor.
+	 * @throws Exception
 	 */
 	public function __construct() {
-		spl_autoload_register( array( $this, 'autoloader' ) );
+		spl_autoload_register( array( $this, 'rules_and_operations_autoloader' ) );
 		register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 	}
@@ -96,7 +98,7 @@ class RSPW_Bootstrap {
 	/**
 	 * @param $class_name
 	 */
-	public function autoloader( $class_name ) {
+	public function rules_and_operations_autoloader( $class_name ) {
 		$class_name  = str_replace( '_', '-', strtolower( $class_name ) );
 		$directories = array( 'rules', 'operators' );
 
