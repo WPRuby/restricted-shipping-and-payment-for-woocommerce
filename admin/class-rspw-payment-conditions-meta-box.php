@@ -5,8 +5,8 @@
  * @link       https://wpruby.com
  * @since      1.0.0
  *
- * @package    Restricted_payment_And_Payment_For_Woocommerce
- * @subpackage Restricted_payment_And_Payment_For_Woocommerce/admin
+ * @package    WC_Restricted_payment_And_Payment
+ * @subpackage WC_Restricted_payment_And_Payment/admin
  */
 
 /**
@@ -15,8 +15,8 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Restricted_payment_And_Payment_For_Woocommerce
- * @subpackage Restricted_payment_And_Payment_For_Woocommerce/admin
+ * @package    WC_Restricted_payment_And_Payment
+ * @subpackage WC_Restricted_payment_And_Payment/admin
  * @author     WPRuby <info@wpruby.com>
  */
 class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
