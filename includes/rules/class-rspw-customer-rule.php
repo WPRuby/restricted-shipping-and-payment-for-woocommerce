@@ -34,8 +34,8 @@ class RSPW_Customer_Rule implements RSPW_Rule {
 	 */
 	public function get_operators_labels() {
 		return array(
-			RSPW_Operators_Factory::OPERATOR_IS     => __( 'email is', 'restricted-shipping-and-payment-for-woocommerce' ),
-			RSPW_Operators_Factory::OPERATOR_IS_NOT => __( 'email is not', 'restricted-shipping-and-payment-for-woocommerce' ),
+			RSPW_Operators_Factory::OPERATOR_IS     => __( 'email is', 'wc-restricted-shipping-and-payment' ),
+			RSPW_Operators_Factory::OPERATOR_IS_NOT => __( 'email is not', 'wc-restricted-shipping-and-payment' ),
 		);
 	}
 
@@ -45,7 +45,7 @@ class RSPW_Customer_Rule implements RSPW_Rule {
 	public function get_meta_box_fields() {
 		return array(
 			array(
-				'name'    => __( 'Customer Email', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'name'    => __( 'Customer Email', 'wc-restricted-shipping-and-payment' ),
 				'id'      => 'value_customer',
 				'type'    => 'text_email',
 				'classes' => 'value_field customer',

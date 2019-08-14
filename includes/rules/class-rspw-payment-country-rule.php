@@ -31,8 +31,8 @@ class RSPW_Payment_Country_Rule implements RSPW_Rule {
 	 */
 	public function get_operators_labels() {
 		return array(
-			RSPW_Operators_Factory::OPERATOR_IS     => __( 'is', 'restricted-shipping-and-payment-for-woocommerce' ),
-			RSPW_Operators_Factory::OPERATOR_IS_NOT => __( 'is not', 'restricted-shipping-and-payment-for-woocommerce' ),
+			RSPW_Operators_Factory::OPERATOR_IS     => __( 'is', 'wc-restricted-shipping-and-payment' ),
+			RSPW_Operators_Factory::OPERATOR_IS_NOT => __( 'is not', 'wc-restricted-shipping-and-payment' ),
 		);
 	}
 
@@ -42,8 +42,8 @@ class RSPW_Payment_Country_Rule implements RSPW_Rule {
 	public function get_meta_box_fields() {
 		return array(
 			array(
-				'name'             => __( 'payment Countries', 'restricted-shipping-and-payment-for-woocommerce' ),
-				'desc'             => __( 'Select payment countries', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'name'             => __( 'payment Countries', 'wc-restricted-shipping-and-payment' ),
+				'desc'             => __( 'Select payment countries', 'wc-restricted-shipping-and-payment' ),
 				'id'               => 'value_payment_country',
 				'type'             => 'pw_multiselect',
 				'show_option_none' => false,

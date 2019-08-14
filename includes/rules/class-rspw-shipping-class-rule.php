@@ -41,16 +41,16 @@ class RSPW_Shipping_Class_Rule implements RSPW_Rule {
 	 */
 	public function get_operators_labels() {
 		return array(
-			RSPW_Operators_Factory::OPERATOR_IN     => __( 'included in the order', 'restricted-shipping-and-payment-for-woocommerce' ),
-			RSPW_Operators_Factory::OPERATOR_NOT_IN => __( 'not included in the order', 'restricted-shipping-and-payment-for-woocommerce' ),
+			RSPW_Operators_Factory::OPERATOR_IN     => __( 'included in the order', 'wc-restricted-shipping-and-payment' ),
+			RSPW_Operators_Factory::OPERATOR_NOT_IN => __( 'not included in the order', 'wc-restricted-shipping-and-payment' ),
 		);
 	}
 
 	public function get_meta_box_fields() {
 		return array(
 			array(
-				'name'             => __( 'Shipping Classes', 'restricted-shipping-and-payment-for-woocommerce' ),
-				'desc'             => __( 'Select shipping class/es', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'name'             => __( 'Shipping Classes', 'wc-restricted-shipping-and-payment' ),
+				'desc'             => __( 'Select shipping class/es', 'wc-restricted-shipping-and-payment' ),
 				'id'               => 'value_shipping_class',
 				'type'             => 'pw_multiselect',
 				'show_option_none' => false,

@@ -1,4 +1,4 @@
-=== Restricted Shipping and Payment for WooCommerce ===
+=== WC Restricted Shipping and Payment ===
 Contributors: waseem_senjer, wprubyplugins
 Donate link: https://wpruby.com
 Tags: woocommerce, shipping, admin, payment, payment gateways, shipping method
@@ -15,7 +15,7 @@ A simplistic plugin for excluding shipping methods based on multiple rules such 
 
 == Installation ==
 
-1. Upload `restricted-shipping-and-payment-for-woocommerce.zip` to the `/wp-content/plugins/` directory
+1. Upload `wc-restricted-shipping-and-payment.zip` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. A new admin menu items `Shipping Conditions` and `Payment Conditions` will be added to the WooCommerce menu item.
 

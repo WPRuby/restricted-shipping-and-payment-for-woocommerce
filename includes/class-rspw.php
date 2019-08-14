@@ -72,7 +72,7 @@ class RSPW {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'restricted-shipping-and-payment-for-woocommerce';
+		$this->plugin_name = 'wc-restricted-shipping-and-payment';
 
 		$this->load_dependencies();
 		$this->set_locale();

@@ -77,16 +77,16 @@ class RSPW_Admin {
 	 */
 	public function register_post_types() {
 		$labels = array(
-			'name'               => __( 'Shipping Conditions', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'singular_name'      => __( 'Shipping Condition', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'add_new'            => __( 'Add New', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'add_new_item'       => __( 'Add New Shipping Condition', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'edit_item'          => __( 'Edit Shipping Condition', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'new_item'           => __( 'New Shipping Condition', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'view_item'          => __( 'View Shipping Condition', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'search_items'       => __( 'Search Shipping Conditions', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'not_found'          => __( 'No Shipping Conditions', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'not_found_in_trash' => __( 'No Shipping Conditions found in Trash', 'restricted-shipping-and-payment-for-woocommerce' ),
+			'name'               => __( 'Shipping Conditions', 'wc-restricted-shipping-and-payment' ),
+			'singular_name'      => __( 'Shipping Condition', 'wc-restricted-shipping-and-payment' ),
+			'add_new'            => __( 'Add New', 'wc-restricted-shipping-and-payment' ),
+			'add_new_item'       => __( 'Add New Shipping Condition', 'wc-restricted-shipping-and-payment' ),
+			'edit_item'          => __( 'Edit Shipping Condition', 'wc-restricted-shipping-and-payment' ),
+			'new_item'           => __( 'New Shipping Condition', 'wc-restricted-shipping-and-payment' ),
+			'view_item'          => __( 'View Shipping Condition', 'wc-restricted-shipping-and-payment' ),
+			'search_items'       => __( 'Search Shipping Conditions', 'wc-restricted-shipping-and-payment' ),
+			'not_found'          => __( 'No Shipping Conditions', 'wc-restricted-shipping-and-payment' ),
+			'not_found_in_trash' => __( 'No Shipping Conditions found in Trash', 'wc-restricted-shipping-and-payment' ),
 		);
 
 		$args = array(
@@ -108,16 +108,16 @@ class RSPW_Admin {
 		register_post_type( RSPW_SHIPPING_CONDITION, $args );
 
 		$labels = array(
-			'name'               => __( 'Payment Conditions', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'singular_name'      => __( 'Payment Condition', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'add_new'            => __( 'Add New', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'add_new_item'       => __( 'Add New Payment Condition', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'edit_item'          => __( 'Edit Payment Condition', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'new_item'           => __( 'New Payment Condition', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'view_item'          => __( 'View Payment Condition', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'search_items'       => __( 'Search Payment Conditions', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'not_found'          => __( 'No Payment Conditions', 'restricted-shipping-and-payment-for-woocommerce' ),
-			'not_found_in_trash' => __( 'No Payment Conditions found in Trash', 'restricted-shipping-and-payment-for-woocommerce' ),
+			'name'               => __( 'Payment Conditions', 'wc-restricted-shipping-and-payment' ),
+			'singular_name'      => __( 'Payment Condition', 'wc-restricted-shipping-and-payment' ),
+			'add_new'            => __( 'Add New', 'wc-restricted-shipping-and-payment' ),
+			'add_new_item'       => __( 'Add New Payment Condition', 'wc-restricted-shipping-and-payment' ),
+			'edit_item'          => __( 'Edit Payment Condition', 'wc-restricted-shipping-and-payment' ),
+			'new_item'           => __( 'New Payment Condition', 'wc-restricted-shipping-and-payment' ),
+			'view_item'          => __( 'View Payment Condition', 'wc-restricted-shipping-and-payment' ),
+			'search_items'       => __( 'Search Payment Conditions', 'wc-restricted-shipping-and-payment' ),
+			'not_found'          => __( 'No Payment Conditions', 'wc-restricted-shipping-and-payment' ),
+			'not_found_in_trash' => __( 'No Payment Conditions found in Trash', 'wc-restricted-shipping-and-payment' ),
 		);
 
 		$args = array(

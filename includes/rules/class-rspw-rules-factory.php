@@ -30,31 +30,31 @@ class RSPW_Rules_Factory {
 		return array(
 			self::RULE_SHIPPING_CLASS   => array(
 				'class' => RSPW_Shipping_Class_Rule::class,
-				'label' => __( 'Shipping Class', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'label' => __( 'Shipping Class', 'wc-restricted-shipping-and-payment' ),
 			),
 			self::RULE_COUPON_CODE      => array(
 				'class' => RSPW_Coupon_Code_Rule::class,
-				'label' => __( 'Coupon Code', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'label' => __( 'Coupon Code', 'wc-restricted-shipping-and-payment' ),
 			),
 			self::RULE_CART_TOTAL       => array(
 				'class' => RSPW_Cart_Total_Rule::class,
-				'label' => __( 'Cart Total', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'label' => __( 'Cart Total', 'wc-restricted-shipping-and-payment' ),
 			),
 			self::RULE_PACKAGE_WEIGHT   => array(
 				'class' => RSPW_Package_Weight_Rule::class,
-				'label' => __( 'Package Weight', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'label' => __( 'Package Weight', 'wc-restricted-shipping-and-payment' ),
 			),
 			self::RULE_SHIPPING_COUNTRY => array(
 				'class' => RSPW_Shipping_Country_Rule::class,
-				'label' => __( 'Shipping Country', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'label' => __( 'Shipping Country', 'wc-restricted-shipping-and-payment' ),
 			),
 			self::RULE_BILLING_COUNTRY  => array(
 				'class' => RSPW_Billing_Country_Rule::class,
-				'label' => __( 'Billing Country', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'label' => __( 'Billing Country', 'wc-restricted-shipping-and-payment' ),
 			),
 			self::RULE_CUSTOMER         => array(
 				'class' => RSPW_Customer_Rule::class,
-				'label' => __( 'Customer', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'label' => __( 'Customer', 'wc-restricted-shipping-and-payment' ),
 			),
 		);
 	}

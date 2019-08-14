@@ -22,9 +22,9 @@ class RSPW_Cart_Total_Rule implements RSPW_Rule {
 	 */
 	public function get_operators_labels() {
 		return array(
-			RSPW_Operators_Factory::OPERATOR_LT    => __( 'less than', 'restricted-shipping-and-payment-for-woocommerce' ),
-			RSPW_Operators_Factory::OPERATOR_EQUAL => __( 'equal to', 'restricted-shipping-and-payment-for-woocommerce' ),
-			RSPW_Operators_Factory::OPERATOR_GT    => __( 'more than', 'restricted-shipping-and-payment-for-woocommerce' ),
+			RSPW_Operators_Factory::OPERATOR_LT    => __( 'less than', 'wc-restricted-shipping-and-payment' ),
+			RSPW_Operators_Factory::OPERATOR_EQUAL => __( 'equal to', 'wc-restricted-shipping-and-payment' ),
+			RSPW_Operators_Factory::OPERATOR_GT    => __( 'more than', 'wc-restricted-shipping-and-payment' ),
 		);
 	}
 
@@ -34,7 +34,7 @@ class RSPW_Cart_Total_Rule implements RSPW_Rule {
 	public function get_meta_box_fields() {
 		return array(
 			array(
-				'name'         => __( 'Cart Total', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'name'         => __( 'Cart Total', 'wc-restricted-shipping-and-payment' ),
 				'id'           => 'value_cart_total',
 				'type'         => 'text_money',
 				'before_field' => get_woocommerce_currency_symbol(),

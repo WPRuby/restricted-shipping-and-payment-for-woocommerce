@@ -30,8 +30,8 @@ class RSPW_Coupon_Code_Rule implements RSPW_Rule {
 	 */
 	public function get_operators_labels() {
 		return array(
-			RSPW_Operators_Factory::OPERATOR_IN     => __( 'included in the order', 'restricted-shipping-and-payment-for-woocommerce' ),
-			RSPW_Operators_Factory::OPERATOR_NOT_IN => __( 'not included in the order', 'restricted-shipping-and-payment-for-woocommerce' ),
+			RSPW_Operators_Factory::OPERATOR_IN     => __( 'included in the order', 'wc-restricted-shipping-and-payment' ),
+			RSPW_Operators_Factory::OPERATOR_NOT_IN => __( 'not included in the order', 'wc-restricted-shipping-and-payment' ),
 		);
 	}
 
@@ -41,8 +41,8 @@ class RSPW_Coupon_Code_Rule implements RSPW_Rule {
 	public function get_meta_box_fields() {
 		return array(
 			array(
-				'name'             => __( 'Coupon Codes', 'restricted-shipping-and-payment-for-woocommerce' ),
-				'desc'             => __( 'Select coupon code/s', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'name'             => __( 'Coupon Codes', 'wc-restricted-shipping-and-payment' ),
+				'desc'             => __( 'Select coupon code/s', 'wc-restricted-shipping-and-payment' ),
 				'id'               => 'value_coupon_code',
 				'type'             => 'pw_multiselect',
 				'show_option_none' => false,

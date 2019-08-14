@@ -28,7 +28,7 @@ class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 		$cmb = new_cmb2_box(
 			array(
 				'id'           => 'payment_conditions_metabox',
-				'title'        => __( 'Condition Properties', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'title'        => __( 'Condition Properties', 'wc-restricted-shipping-and-payment' ),
 				'object_types' => array( RSPW_PAYMENT_CONDITION ),
 				'context'      => 'normal',
 				'priority'     => 'high',
@@ -38,8 +38,8 @@ class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 
 		$cmb->add_field(
 			array(
-				'name'             => __( 'Excluded Payment Gateways', 'restricted-shipping-and-payment-for-woocommerce' ),
-				'desc'             => __( 'Select Payment gateway/s', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'name'             => __( 'Excluded Payment Gateways', 'wc-restricted-shipping-and-payment' ),
+				'desc'             => __( 'Select Payment gateway/s', 'wc-restricted-shipping-and-payment' ),
 				'id'               => 'excluded_payment_gateways',
 				'type'             => 'pw_multiselect',
 				'show_option_none' => false,
@@ -51,11 +51,11 @@ class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 			array(
 				'id'          => 'payment_condition_rules',
 				'type'        => 'group',
-				'description' => __( 'Add the condition rules, any rule would match cart contents the payment methods will be excluded', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'description' => __( 'Add the condition rules, any rule would match cart contents the payment methods will be excluded', 'wc-restricted-shipping-and-payment' ),
 				'options'     => array(
-					'group_title'   => __( 'Rule {#}', 'restricted-shipping-and-payment-for-woocommerce' ),
-					'add_button'    => __( 'Add Another Rule', 'restricted-shipping-and-payment-for-woocommerce' ),
-					'remove_button' => __( 'Remove Rule', 'restricted-shipping-and-payment-for-woocommerce' ),
+					'group_title'   => __( 'Rule {#}', 'wc-restricted-shipping-and-payment' ),
+					'add_button'    => __( 'Add Another Rule', 'wc-restricted-shipping-and-payment' ),
+					'remove_button' => __( 'Remove Rule', 'wc-restricted-shipping-and-payment' ),
 					'sortable'      => true,
 					'closed'        => true,
 				),
@@ -65,7 +65,7 @@ class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 		$cmb->add_group_field(
 			$group_field_id,
 			array(
-				'name'             => __( 'Rule Type', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'name'             => __( 'Rule Type', 'wc-restricted-shipping-and-payment' ),
 				'id'               => 'rule_type',
 				'type'             => 'select',
 				'classes'          => 'rule_type',
@@ -77,7 +77,7 @@ class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 		$cmb->add_group_field(
 			$group_field_id,
 			array(
-				'name'       => __( 'Operator', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'name'       => __( 'Operator', 'wc-restricted-shipping-and-payment' ),
 				'id'         => 'operator',
 				'type'       => 'select',
 				'options_cb' => array( $this, 'get_payment_operators' ),

@@ -14,7 +14,7 @@
  * Author URI:        https://wpruby.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       restricted-shipping-and-payment-for-woocommerce
+ * Text Domain:       wc-restricted-shipping-and-payment
  * Domain Path:       /languages
  */
 
@@ -71,7 +71,7 @@ class RSPW_Bootstrap {
 
 	/**
 	 * The code that runs during plugin activation.
-	 * This action is documented in includes/class-restricted-shipping-and-payment-for-woocommerce-activator.php
+	 * This action is documented in includes/class-rspw-activator.php
 	 */
 	public function activate() {
 		RSPW_Activator::activate();

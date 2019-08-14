@@ -13,7 +13,7 @@ A simplistic plugin for excluding shipping methods based on multiple rules such 
 
 ## Installation 
 
-1. Upload `restricted-shipping-and-payment-for-woocommerce.php` to the `/wp-content/plugins/` directory
+1. Upload `wc-restricted-shipping-and-payment.php` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. A new admin menu item `Shipping Conditions` and `Payment Conditions` will be added.
 
