@@ -7,7 +7,6 @@
  *
  * @wordpress-plugin
  * Plugin Name:       WC Restricted Shipping And Payment
- * Plugin URI:        https://wpruby.com
  * Description:       Add conditions and rules to enable/disable your WooCommerce shipping methods and Payment gateways.
  * Version:           1.0.0
  * Author:            WPRuby
