@@ -1,4 +1,4 @@
-# Restricted Shipping and Payment for WooCommerce 
+# WC Restricted Shipping And Payment 
 **Contributors:** waseem_senjer, wprubyplugins  
 **Donate link:** https://wpruby.com  
 **Tags:** woocommerce, shipping, admin  

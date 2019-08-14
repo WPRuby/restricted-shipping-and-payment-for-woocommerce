@@ -1,8 +1,8 @@
 # Copyright (C) 2019 WPRuby
-# This file is distributed under the same license as the Restricted Shipping And Payment For Woocommerce plugin.
+# This file is distributed under the same license as the WC Restricted Shipping And Payment plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Restricted Shipping And Payment For Woocommerce 1.0.0\n"
+"Project-Id-Version: WC Restricted Shipping And Payment 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wc-restricted-shipping-and-payment\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Domain: wc-restricted-shipping-and-payment\n"
 
 #. Plugin Name of the plugin
-msgid "Restricted Shipping And Payment For Woocommerce"
+msgid "WC Restricted Shipping And Payment"
 msgstr ""
 
 #. Plugin URI of the plugin

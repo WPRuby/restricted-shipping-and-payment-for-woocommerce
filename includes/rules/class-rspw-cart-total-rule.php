@@ -37,9 +37,17 @@ class RSPW_Cart_Total_Rule implements RSPW_Rule {
 				'name'         => __( 'Cart Total', 'wc-restricted-shipping-and-payment' ),
 				'id'           => 'value_cart_total',
 				'type'         => 'text_money',
-				'before_field' => get_woocommerce_currency_symbol(),
+				'before_field' => $this->get_currency_symbol(),
 				'classes'      => 'value_field cart_total',
 			),
 		);
+	}
+
+	private function get_currency_symbol() {
+		if ( function_exists( 'get_woocommerce_currency_symbol' ) ) {
+			return get_woocommerce_currency_symbol();
+		}
+
+		return '$';
 	}
 }

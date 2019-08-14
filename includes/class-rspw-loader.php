@@ -5,8 +5,8 @@
  * @link       https://wpruby.com
  * @since      1.0.0
  *
- * @package    Restricted_Shipping_And_Payment_For_Woocommerce
- * @subpackage Restricted_Shipping_And_Payment_For_Woocommerce/includes
+ * @package    WC_Restricted_Shipping_And_Payment
+ * @subpackage WC_Restricted_Shipping_And_Payment/includes
  */
 
 /**
@@ -16,8 +16,8 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Restricted_Shipping_And_Payment_For_Woocommerce
- * @subpackage Restricted_Shipping_And_Payment_For_Woocommerce/includes
+ * @package    WC_Restricted_Shipping_And_Payment
+ * @subpackage WC_Restricted_Shipping_And_Payment/includes
  * @author     WPRuby <info@wpruby.com>
  */
 class RSPW_Loader {

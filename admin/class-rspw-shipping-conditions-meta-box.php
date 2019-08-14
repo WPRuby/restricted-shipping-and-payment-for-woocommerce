@@ -5,8 +5,8 @@
  * @link       https://wpruby.com
  * @since      1.0.0
  *
- * @package    Restricted_Shipping_And_Payment_For_Woocommerce
- * @subpackage Restricted_Shipping_And_Payment_For_Woocommerce/admin
+ * @package    WC_Restricted_Shipping_And_Payment
+ * @subpackage WC_Restricted_Shipping_And_Payment/admin
  */
 
 /**
@@ -15,8 +15,8 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Restricted_Shipping_And_Payment_For_Woocommerce
- * @subpackage Restricted_Shipping_And_Payment_For_Woocommerce/admin
+ * @package    WC_Restricted_Shipping_And_Payment
+ * @subpackage WC_Restricted_Shipping_And_Payment/admin
  * @author     WPRuby <info@wpruby.com>
  */
 class RSPW_Shipping_Conditions_Meta_Box extends RSPW_Meta_Box {
@@ -93,6 +93,10 @@ class RSPW_Shipping_Conditions_Meta_Box extends RSPW_Meta_Box {
 	 * @return array
 	 */
 	private function get_shipping_methods() {
+		if ( ! class_exists( 'WC_Shipping_Zones' ) ) {
+			return array();
+		}
+
 		$shipping_methods = array();
 		$shipping_zones   = WC_Shipping_Zones::get_zones();
 

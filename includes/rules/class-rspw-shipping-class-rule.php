@@ -64,6 +64,9 @@ class RSPW_Shipping_Class_Rule implements RSPW_Rule {
 	 * @return array
 	 */
 	private function get_shipping_classes() {
+		if ( ! function_exists( 'WC' ) ) {
+			return array();
+		}
 		$classes          = array();
 		$shipping_classes = WC()->shipping()->get_shipping_classes();
 		foreach ( $shipping_classes as $shipping_class ) {

@@ -3,10 +3,10 @@
  *
  * @link              https://wpruby.com
  * @since             1.0.0
- * @package           Restricted_Shipping_And_Payment_For_Woocommerce
+ * @package           WC_Restricted_Shipping_And_Payment
  *
  * @wordpress-plugin
- * Plugin Name:       Restricted Shipping And Payment For Woocommerce
+ * Plugin Name:       WC Restricted Shipping And Payment
  * Plugin URI:        https://wpruby.com
  * Description:       Add conditions and rules to enable/disable your WooCommerce shipping methods and Payment gateways.
  * Version:           1.0.0
@@ -22,6 +22,12 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw-deactivator.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw-activator.php';
+
 
 define( 'RSPW_SHIPPING_CONDITION', 'shipping_condition' );
 define( 'RSPW_PAYMENT_CONDITION', 'payment_condition' );
@@ -110,20 +116,5 @@ class RSPW_Bootstrap {
 	}
 }
 
-if(rspw_is_woocommerce_active()){
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw.php';
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw-deactivator.php';
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw-activator.php';
-	/** initiate the plugin */
-	RSPW_Bootstrap::get_instance()->run();
-}
 
-
-
-function rspw_is_woocommerce_active(){
-	$slug = 'woocommerce/woocommerce.php';
-	$active_plugins = (array) get_option( 'active_plugins', array() );
-	if ( is_multisite() )
-		$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
-	return in_array( $slug, $active_plugins ) || array_key_exists( $slug, $active_plugins );
-}
+RSPW_Bootstrap::get_instance()->run();

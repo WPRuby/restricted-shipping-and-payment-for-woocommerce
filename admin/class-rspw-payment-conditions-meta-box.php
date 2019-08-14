@@ -92,6 +92,10 @@ class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 	 * @return array
 	 */
 	private function get_payment_gateways() {
+		if ( ! function_exists( 'WC' ) ) {
+			return array();
+		}
+
 		$available_gateways = array();
 		$gateways           = WC()->payment_gateways()->payment_gateways();
 		foreach ( $gateways as $key => $gateway ) {

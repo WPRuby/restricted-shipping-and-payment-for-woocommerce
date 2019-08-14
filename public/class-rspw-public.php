@@ -5,8 +5,8 @@
  * @link       https://wpruby.com
  * @since      1.0.0
  *
- * @package    Restricted_Shipping_And_Payment_For_Woocommerce
- * @subpackage Restricted_Shipping_And_Payment_For_Woocommerce/public
+ * @package    WC_Restricted_Shipping_And_Payment
+ * @subpackage WC_Restricted_Shipping_And_Payment/public
  */
 
 /**
@@ -15,8 +15,8 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Restricted_Shipping_And_Payment_For_Woocommerce
- * @subpackage Restricted_Shipping_And_Payment_For_Woocommerce/public
+ * @package    WC_Restricted_Shipping_And_Payment
+ * @subpackage WC_Restricted_Shipping_And_Payment/public
  * @author     WPRuby <info@wpruby.com>
  */
 class RSPW_Public {

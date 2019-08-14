@@ -5,8 +5,8 @@
  * @link       https://wpruby.com
  * @since      1.0.0
  *
- * @package    Restricted_Shipping_And_Payment_For_Woocommerce
- * @subpackage Restricted_Shipping_And_Payment_For_Woocommerce/includes
+ * @package    WC_Restricted_Shipping_And_Payment
+ * @subpackage WC_Restricted_Shipping_And_Payment/includes
  */
 
 /**
@@ -15,8 +15,8 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Restricted_Shipping_And_Payment_For_Woocommerce
- * @subpackage Restricted_Shipping_And_Payment_For_Woocommerce/includes
+ * @package    WC_Restricted_Shipping_And_Payment
+ * @subpackage WC_Restricted_Shipping_And_Payment/includes
  * @author     WPRuby <info@wpruby.com>
  */
 class RSPW_Activator {

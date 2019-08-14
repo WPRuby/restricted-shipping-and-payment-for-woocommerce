@@ -21,7 +21,7 @@
  * @link       https://wpruby.com
  * @since      1.0.0
  *
- * @package    Restricted_Shipping_And_Payment_For_Woocommerce
+ * @package    WC_Restricted_Shipping_And_Payment
  */
 
 // If uninstall not called from WordPress, then exit.

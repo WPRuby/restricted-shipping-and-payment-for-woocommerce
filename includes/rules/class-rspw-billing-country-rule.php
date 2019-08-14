@@ -39,9 +39,16 @@ class RSPW_Billing_Country_Rule implements RSPW_Rule {
 				'id'               => 'value_billing_country',
 				'type'             => 'pw_multiselect',
 				'show_option_none' => false,
-				'options'          => WC()->countries->get_allowed_countries(),
+				'options'          => $this->get_billing_countries(),
 				'classes'          => 'value_field billing_country',
 			),
 		);
+	}
+
+	private function get_billing_countries() {
+		if ( function_exists( 'WC' ) ) {
+			return WC()->countries->get_allowed_countries();
+		}
+		return array();
 	}
 }
