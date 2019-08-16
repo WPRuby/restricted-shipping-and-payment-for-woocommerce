@@ -93,6 +93,10 @@ class RSPW_Shipping_Conditions_Meta_Box extends RSPW_Meta_Box {
 	 * @return array
 	 */
 	private function get_shipping_methods() {
+		if ( ! class_exists( 'WC_Shipping_Zones' ) ) {
+			return array();
+		}
+
 		$shipping_methods = array();
 		$shipping_zones   = WC_Shipping_Zones::get_zones();
 

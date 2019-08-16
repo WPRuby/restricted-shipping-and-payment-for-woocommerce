@@ -11,7 +11,6 @@
  * Description:       Add conditions and rules to enable/disable your WooCommerce shipping methods and Payment gateways.
  * Version:           1.0.0
  * Author:            WPRuby
- * Author URI:        https://wpruby.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       restricted-shipping-and-payment-for-woocommerce
@@ -22,6 +21,10 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw-deactivator.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw-activator.php';
 
 define( 'RSPW_SHIPPING_CONDITION', 'shipping_condition' );
 define( 'RSPW_PAYMENT_CONDITION', 'payment_condition' );
@@ -110,20 +113,6 @@ class RSPW_Bootstrap {
 	}
 }
 
-if(rspw_is_woocommerce_active()){
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw.php';
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw-deactivator.php';
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-rspw-activator.php';
-	/** initiate the plugin */
-	RSPW_Bootstrap::get_instance()->run();
-}
 
-
-
-function rspw_is_woocommerce_active(){
-	$slug = 'woocommerce/woocommerce.php';
-	$active_plugins = (array) get_option( 'active_plugins', array() );
-	if ( is_multisite() )
-		$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
-	return in_array( $slug, $active_plugins ) || array_key_exists( $slug, $active_plugins );
-}
+/** initiate the plugin */
+RSPW_Bootstrap::get_instance()->run();

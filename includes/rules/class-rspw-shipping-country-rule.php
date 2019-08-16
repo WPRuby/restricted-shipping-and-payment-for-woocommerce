@@ -50,9 +50,16 @@ class RSPW_Shipping_Country_Rule implements RSPW_Rule {
 				'id'               => 'value_shipping_country',
 				'type'             => 'pw_multiselect',
 				'show_option_none' => false,
-				'options'          => WC()->countries->get_shipping_countries(),
+				'options'          => $this->get_shipping_countries(),
 				'classes'          => 'value_field shipping_country',
 			),
 		);
+	}
+
+	private function get_shipping_countries() {
+		if ( function_exists( 'WC' ) ) {
+			return WC()->countries->get_shipping_countries();
+		}
+		return array();
 	}
 }
