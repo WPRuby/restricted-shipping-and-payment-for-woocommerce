@@ -10,71 +10,70 @@
  * @license   GPL-2.0+
  * @link      https://cmb2.io
  */
-class CMB2_Type_Taxonomy_Select extends CMB2_Type_Taxonomy_Base
-{
-    public function render()
-    {
-        $all_terms = $this->get_terms();
+class CMB2_Type_Taxonomy_Select extends CMB2_Type_Taxonomy_Base {
 
-        if (! $all_terms || is_wp_error($all_terms)) {
-            return $this->no_terms_result($all_terms, 'strong');
-        }
+	public function render() {
+		$all_terms = $this->get_terms();
 
-        $saved_term  = $this->get_object_term_or_default();
-        $option_none = $this->field->args('show_option_none');
-        $options     = '';
+		if ( ! $all_terms || is_wp_error( $all_terms ) ) {
+			return $this->no_terms_result( $all_terms, 'strong' );
+		}
 
-        if (! empty($option_none)) {
-            $field_id = $this->_id();
+		$saved_term  = $this->get_object_term_or_default();
+		$option_none = $this->field->args( 'show_option_none' );
+		$options     = '';
 
-            /**
-             * Default (option-none) taxonomy-select value.
-             *
-             * @since 1.3.0
-             *
-             * @param string $option_none_value Default (option-none) taxonomy-select value.
-             */
-            $option_none_value = apply_filters('cmb2_taxonomy_select_default_value', '');
+		if ( ! empty( $option_none ) ) {
 
-            /**
-             * Default (option-none) taxonomy-select value.
-             *
-             * The dynamic portion of the hook name, $field_id, refers to the field id attribute.
-             *
-             * @since 1.3.0
-             *
-             * @param string $option_none_value Default (option-none) taxonomy-select value.
-             */
-            $option_none_value = apply_filters("cmb2_taxonomy_select_{$field_id}_default_value", $option_none_value);
+			$field_id = $this->_id();
 
-            $options .= $this->select_option(array(
-                'label'   => $option_none,
-                'value'   => $option_none_value,
-                'checked' => $saved_term == $option_none_value,
-            ));
-        }
+			/**
+			 * Default (option-none) taxonomy-select value.
+			 *
+			 * @since 1.3.0
+			 *
+			 * @param string $option_none_value Default (option-none) taxonomy-select value.
+			 */
+			$option_none_value = apply_filters( 'cmb2_taxonomy_select_default_value', '' );
 
-        $options .= $this->loop_terms($all_terms, $saved_term);
+			/**
+			 * Default (option-none) taxonomy-select value.
+			 *
+			 * The dynamic portion of the hook name, $field_id, refers to the field id attribute.
+			 *
+			 * @since 1.3.0
+			 *
+			 * @param string $option_none_value Default (option-none) taxonomy-select value.
+			 */
+			$option_none_value = apply_filters( "cmb2_taxonomy_select_{$field_id}_default_value", $option_none_value );
 
-        return $this->rendered(
-            $this->types->select(array(
-                'options' => $options,
-            ))
-        );
-    }
+			$options .= $this->select_option( array(
+				'label'   => $option_none,
+				'value'   => $option_none_value,
+				'checked' => $saved_term == $option_none_value,
+			) );
+		}
 
-    protected function loop_terms($all_terms, $saved_term)
-    {
-        $options = '';
+		$options .= $this->loop_terms( $all_terms, $saved_term );
 
-        foreach ($all_terms as $term) {
-            $options .= $this->select_option(array(
-                'label'   => $term->name,
-                'value'   => $term->slug,
-                'checked' => $saved_term === $term->slug,
-            ));
-        }
+		return $this->rendered(
+			$this->types->select( array(
+				'options' => $options,
+			) )
+		);
+	}
 
-        return $options;
-    }
+	protected function loop_terms( $all_terms, $saved_term ) {
+		$options = '';
+
+		foreach ( $all_terms as $term ) {
+			$options .= $this->select_option( array(
+				'label'   => $term->name,
+				'value'   => $term->slug,
+				'checked' => $saved_term === $term->slug,
+			) );
+		}
+
+		return $options;
+	}
 }
