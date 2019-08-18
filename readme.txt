@@ -12,6 +12,11 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 A simplistic plugin for excluding shipping methods based on multiple rules such as shipping class, package weight and cart totals.
+## Excluding Payment Gateways
+You can take full control of your store payment gateways by excluding certain gateways if certain rules were met in the checkout process. For example, you can exclude Check Payments if the cart total is less than 100$. You can add an unlimited number of rules to control your payment methods availability.
+
+## Excluding Shipping Methods
+Moreover, you can have a high level of control over your store’s shipping methods, You can apply as many rules as you need in order to manage your shipping methods availability. For example, you may exclude some shipping methods if the order weight exceeds a certain weight, or exclude shipping method/s if the destination was a certain country.
 
 == Installation ==
 
