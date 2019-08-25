@@ -13,11 +13,47 @@ abstract class RSPW_Meta_Box {
 	 */
 	public function __construct() {
 		add_action( 'cmb2_admin_init', array( $this, 'rules_metabox' ) );
+		add_action('add_meta_boxes', array($this, 'add_pro_promotion_meta_box'));
 		$this->prefix = '_rsapfw_';
 	}
 
 	abstract public function rules_metabox();
 
+
+	public function add_pro_promotion_meta_box()
+	{
+		$screens = [RSPW_SHIPPING_CONDITION, RSPW_PAYMENT_CONDITION];
+		foreach ($screens as $screen) {
+			add_meta_box(
+				'rspw_pro_promotion_box_id',
+				'Upgrade To Pro',
+				array($this, 'add_pro_promotion_meta_box_html'),
+				$screen,
+                'side'
+			);
+		}
+	}
+
+	public function add_pro_promotion_meta_box_html(){
+		?>
+        <p>If you would like to have more rules: </p>
+		<div class="support-widget">
+			<ul>
+				<li>» Postcode</li>
+				<li>» City</li>
+				<li>» State</li>
+				<li>» Product Category</li>
+				<li>» Product Tag</li>
+				<li>» Product Attribute</li>
+				<li>» Downloadable</li>
+				<li>» Virtual</li>
+				<li>» Total Cart Quantity</li>
+
+			</ul>
+			<a href="https://wpruby.com/plugin/woocommerce-restricted-shipping-payment-pro/" class="button wpruby_button" target="_blank"><span class="dashicons dashicons-star-filled"></span> Upgrade Now</a>
+		</div>
+		<?php
+	}
 	/**
 	 * @return array
 	 */

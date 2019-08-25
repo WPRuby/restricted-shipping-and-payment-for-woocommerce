@@ -10,3 +10,14 @@
 #payment_conditions_metabox .select2-container .select2-search__field {
     width: 400px !important;
 }
+
+.wpruby_button{
+    background-color:#4CAF50 !important;
+    border-color:#4CAF50 !important;
+    color:#ffffff !important;
+    width:100%;
+    padding:5px !important;
+    text-align:center;
+    height:35px !important;
+    font-size:12pt !important;
+}
