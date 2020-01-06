@@ -70,7 +70,7 @@ class RSPW {
 		if ( defined( 'RSPW_VERSION' ) ) {
 			$this->version = RSPW_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->version = '1.0.1';
 		}
 		$this->plugin_name = 'restricted-shipping-and-payment-for-woocommerce';
 

@@ -38,6 +38,9 @@ The following rules are available:
 
 ## Changelog 
 ``
+### 1.0.1
+* FIXED: the plugin security nonce was breaking other plugins.
+
 ### 1.0.0 
 * Initial release
 
