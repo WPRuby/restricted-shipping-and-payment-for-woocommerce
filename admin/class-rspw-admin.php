@@ -178,4 +178,18 @@ class RSPW_Admin {
 		}
 		exit;
 	}
+
+	public static function should_print_nonce(){
+		$post_type = '';
+
+		if(isset($_GET['post_type'])){
+			$post_type = $_GET['post_type'];
+		}
+		if(isset($_GET['post'])){
+			$post_type = get_post_type((int) $_GET['post']);
+		}
+
+		return in_array($post_type, array('shipping_condition', 'payment_condition'));
+
+	}
 }
