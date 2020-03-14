@@ -1,4 +1,4 @@
-=== Restricted Shipping and Payment for WooCommerce ===
+=== Shipping and Payment Rules and Conditions for WooCommerce ===
 Contributors: waseem_senjer, wprubyplugins
 Donate link: https://wpruby.com
 Tags: woocommerce, shipping, admin, payment, payment gateways, shipping method
