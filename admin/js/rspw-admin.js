@@ -44,10 +44,6 @@
             });
             group_row_selector.find('.value_field').hide();
             group_row_selector.find('.' + rule_type).show();
-
-
-
-
         });
 	}
     // for payment gateways
@@ -95,6 +91,4 @@
 
         });
     }
-
-
 })( jQuery );

@@ -148,13 +148,11 @@ class RSPW_Admin {
 			print 'Sorry, your nonce did not verify.';
 			exit;
 		}
-
 		$rule_type      = isset( $_POST['rule_type'] ) ? sanitize_text_field( wp_unslash( $_POST['rule_type'] ) ) : '';
 		$post_id        = isset( $_POST['postID'] ) ? sanitize_text_field( wp_unslash( intval( $_POST['postID'] ) ) ) : '';
 		$index          = isset( $_POST['index'] ) ? sanitize_text_field( wp_unslash( intval( $_POST['index'] ) ) ) : '';
-		$condition_type = isset( $_POST['condition_type'] ) ? sanitize_text_field( wp_unslash( intval( $_POST['condition_type'] ) ) ) : '';
-		$rules          = get_post_meta( $post_id, $condition_type . '_condition_rules', true );
-
+		$condition_type = isset( $_POST['condition_type'] ) ? sanitize_text_field( wp_unslash( $_POST['condition_type'] ) ) : '';
+		$rules          = get_post_meta((int) $post_id, $condition_type . '_condition_rules', true );
 		return $this->print_rules( $rules, $index, $rule_type );
 	}
 
