@@ -14,7 +14,7 @@ class RSPW_Payment_Country_Rule implements RSPW_Rule {
 		$rule_shipping_country    = $rule['value_payment_country'];
 		$package_shipping_country = $this->get_payment_country( $package );
 		$operator                 = RSPW_Operators_Factory::make( $rule['operator'] );
-		return ! $operator->match( $package_shipping_country, $rule_shipping_country );
+		return $operator->match( $package_shipping_country, $rule_shipping_country );
 	}
 
 	/**

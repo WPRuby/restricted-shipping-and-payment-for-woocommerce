@@ -14,7 +14,8 @@ class RSPW_Cart_Total_Rule implements RSPW_Rule {
 		$rule_price    = floatval( $rule['value_cart_total'] );
 		$package_price = floatval( $package['cart_subtotal'] );
 		$operator      = RSPW_Operators_Factory::make( $rule['operator'] );
-		return ! $operator->match( $package_price, $rule_price );
+		return $operator->match( $package_price, $rule_price );
+
 	}
 
 	/**
