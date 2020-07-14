@@ -11,8 +11,8 @@ class RSPW_Package_Weight_Rule implements RSPW_Rule {
 	 * @return boolean
 	 */
 	public function validate( $rule, $package ) {
-		$rule_weight    = wc_get_weight( $rule['value_package_weight'], 'kg' );
-		$package_weight = $this->get_package_weight( $package );
+		$rule_weight    = wc_get_weight( $rule['value_package_weight'], 'kg', 'kg' );
+		$package_weight = wc_get_weight( $this->get_package_weight( $package ), 'kg' );
 		$operator       = RSPW_Operators_Factory::make( $rule['operator'] );
 		return $operator->match( $package_weight, $rule_weight );
 	}
@@ -38,7 +38,7 @@ class RSPW_Package_Weight_Rule implements RSPW_Rule {
 		foreach ( $package['contents'] as $content ) {
 			/** @var WC_Product_Simple $product */
 			$product       = $content['data'];
-			$total_weight += floatval( $product->get_weight( 'float' ) );
+			$total_weight += ($content['quantity'] * floatval( $product->get_weight( 'float' ) ));
 		}
 		return $total_weight;
 	}
