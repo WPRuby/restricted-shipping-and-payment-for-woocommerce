@@ -3,11 +3,11 @@ Contributors: waseem_senjer, wprubyplugins
 Donate link: https://wpruby.com
 Tags: woocommerce, shipping, admin, payment, payment gateways, shipping method
 Requires at least: 4.0
-Tested up to: 5.2
+Tested up to: 5.4
 Requires PHP: 5.6
 WC requires at least: 3.0
-WC tested up to: 4.2
-Stable tag: 1.0.3
+WC tested up to: 4.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,10 @@ The following rules are available:
 2. Excluding Direct Bank Transfer if the Cart Total is less than 400$ or the billing country is the United Kingdom.
 
 == Changelog ==
+= 1.0.4 =
+* FIXED: Weight rule unit conversion was not considered.
+* FIXED: Weight rule product quantity was not considered.
+
 = 1.0.3 =
 * FIXED: Cart total rule was not working.
 * FIXED: Payment country rule was not working.
