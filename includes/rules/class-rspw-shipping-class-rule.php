@@ -13,6 +13,7 @@ class RSPW_Shipping_Class_Rule implements RSPW_Rule {
 		$rule_shipping_class = $rule['value_shipping_class'];
 		$operator            = RSPW_Operators_Factory::make( $rule['operator'] );
 
+		$cart_shipping_classes = [];
 		foreach ( $package['contents'] as $item_id => $content ) {
 			/** @var WC_Product $product */
 			$product = $content['data'];
@@ -21,19 +22,18 @@ class RSPW_Shipping_Class_Rule implements RSPW_Rule {
 				continue;
 			}
 
-			$shipping_classes = array_map(
+			$product_shipping_classes = array_map(
 				function ( $term ) {
 					return $term->slug;
 				},
 				$terms
 			);
 
-			if ( $operator->match( $rule_shipping_class, $shipping_classes ) ) {
-				return true;
-			}
+			$cart_shipping_classes = array_merge($cart_shipping_classes, $product_shipping_classes);
+
 		}
 
-		return false;
+		return $operator->match( $rule_shipping_class, $cart_shipping_classes );
 	}
 
 	/**

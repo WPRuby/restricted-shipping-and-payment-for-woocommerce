@@ -99,6 +99,11 @@ class RSPW_Shipping_Filter {
 		foreach ( $rules as $rule ) {
 			$rule_type      = $rule['rule_type'];
 			$rule_validator = RSPW_Rules_Factory::make( $rule_type );
+
+			if ( !$rule_validator instanceof RSPW_Rule) {
+				continue;
+			}
+
 			if ( $rule_validator->validate( $rule, $package ) ) {
 				return true;
 			}
