@@ -102,7 +102,7 @@ class RSPW_Payment_Conditions_Meta_Box extends RSPW_Meta_Box {
 		$available_gateways = array();
 		$gateways           = WC()->payment_gateways()->payment_gateways();
 		foreach ( $gateways as $key => $gateway ) {
-			$available_gateways[ $key ] = $gateway->title;
+			$available_gateways[ $key ] = $gateway->method_title;
 		}
 		return $available_gateways;
 	}
