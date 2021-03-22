@@ -38,7 +38,7 @@ class RSPW_Package_Weight_Rule implements RSPW_Rule {
 		foreach ( $package['contents'] as $content ) {
 			/** @var WC_Product_Simple $product */
 			$product       = $content['data'];
-			$total_weight += ($content['quantity'] * floatval( $product->get_weight( 'float' ) ));
+			$total_weight += ($content['quantity'] * $product->get_weight());
 		}
 		return $total_weight;
 	}
