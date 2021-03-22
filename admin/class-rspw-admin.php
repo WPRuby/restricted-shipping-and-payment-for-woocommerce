@@ -163,8 +163,14 @@ class RSPW_Admin {
 	 *
 	 * @return bool
 	 */
-	protected function print_rules( $rules, $index, $rule_type ) {
-		$selected_rule_type = ( false !== $rules ) ? $rules[ $index ]['operator'] : false;
+	protected function print_rules( $rules, $index, $rule_type )
+	{
+		if (is_array($rules)) {
+			$selected_rule_type = $rules[ $index ]['operator'];
+		} else {
+			$selected_rule_type = false;
+		}
+
 		$available_rules    = array_keys( RSPW_Rules_Factory::available_rules() );
 
 		if ( ! in_array( $rule_type, $available_rules, true ) ) {
