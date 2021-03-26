@@ -3,7 +3,7 @@ Contributors: waseem_senjer, wprubyplugins
 Donate link: https://wpruby.com
 Tags: woocommerce, shipping, admin, payment, payment gateways, shipping method
 Requires at least: 4.0
-Tested up to: 5.4
+Tested up to: 5.7
 Requires PHP: 5.6
 WC requires at least: 3.0
 WC tested up to: 5.1

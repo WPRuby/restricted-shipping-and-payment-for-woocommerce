@@ -17,20 +17,7 @@ class RSPW_Shipping_Class_Rule implements RSPW_Rule {
 		foreach ( $package['contents'] as $item_id => $content ) {
 			/** @var WC_Product $product */
 			$product = $content['data'];
-			$terms   = get_the_terms( $product->get_id(), 'product_shipping_class' );
-			if ( ! $terms ) {
-				continue;
-			}
-
-			$product_shipping_classes = array_map(
-				function ( $term ) {
-					return $term->slug;
-				},
-				$terms
-			);
-
-			$cart_shipping_classes = array_merge($cart_shipping_classes, $product_shipping_classes);
-
+			$cart_shipping_classes[] = $product->get_shipping_class();
 		}
 
 		return $operator->match( $rule_shipping_class, $cart_shipping_classes );
