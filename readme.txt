@@ -7,7 +7,7 @@ Tested up to: 5.7
 Requires PHP: 5.6
 WC requires at least: 3.0
 WC tested up to: 5.1
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,10 @@ The following rules are available:
 2. Excluding Direct Bank Transfer if the Cart Total is less than 400$ or the billing country is the United Kingdom.
 
 == Changelog ==
+
+= 1.0.7
+* FIXED: fix shipping classes issue with product variations
+
 = 1.0.6 =
 * FIXED: product weight for variations.
 
