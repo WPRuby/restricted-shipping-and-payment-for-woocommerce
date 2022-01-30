@@ -3,11 +3,11 @@ Contributors: waseem_senjer, wprubyplugins
 Donate link: https://wpruby.com
 Tags: woocommerce, shipping, admin, payment, payment gateways, shipping method
 Requires at least: 4.0
-Tested up to: 5.7
+Tested up to: 5.9
 Requires PHP: 5.6
 WC requires at least: 3.0
-WC tested up to: 5.1
-Stable tag: 1.0.7
+WC tested up to: 6.1
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,8 @@ The following rules are available:
 2. Excluding Direct Bank Transfer if the Cart Total is less than 400$ or the billing country is the United Kingdom.
 
 == Changelog ==
+= 1.0.8 =
+* Added: WordPress 5.9 compatibility.
 
 = 1.0.7
 * FIXED: fix shipping classes issue with product variations

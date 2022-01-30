@@ -86,7 +86,13 @@ class RSPW_Payment_Filter {
 			$rule_type      = $rule['rule_type'];
 			$rule_validator = RSPW_Rules_Factory::make( $rule_type );
 
-			return $rule_validator->validate( $rule, $package );
+			if ( !$rule_validator instanceof RSPW_Rule) {
+				continue;
+			}
+
+			if ( $rule_validator->validate( $rule, $package ) ) {
+				return true;
+			}
 		}
 		return false;
 	}
