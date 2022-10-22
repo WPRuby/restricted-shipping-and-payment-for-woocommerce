@@ -1,17 +1,22 @@
-=== Shipping and Payment Rules and Conditions for WooCommerce ===
+=== Conditional Payments and Shipping for WooCommerce ===
 Contributors: waseem_senjer, wprubyplugins
 Donate link: https://wpruby.com
-Tags: woocommerce, shipping, admin, payment, payment gateways, shipping method
+Tags: conditional shipping, conditional payments, woocommerce, shipping, admin, payment, payment gateways, shipping method
 Requires at least: 4.0
-Tested up to: 5.9
+Tested up to: 6.0.1
 Requires PHP: 5.6
 WC requires at least: 3.0
-WC tested up to: 6.1
+WC tested up to: 7.0
 Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 A simplistic plugin for excluding shipping methods based on multiple rules such as shipping class, package weight and cart totals.
+
+* [Upgrade to Pro Now](https://wpruby.com/plugin/woocommerce-restricted-shipping-payment-pro/?utm_source=restricted-lite&utm_medium=readme&utm_campaign=freetopro "Upgrade to Pro NOW")
+* [Documentation](https://wpruby.com/knowledgebase_category/woocommerce-restricted-shipping-and-payment-pro/ "Documentation ")
+
+
 ## Excluding Payment Gateways
 You can take full control of your store payment gateways by excluding certain gateways if certain rules were met in the checkout process. For example, you can exclude Check Payments if the cart total is less than 100$. You can add an unlimited number of rules to control your payment methods availability.
 

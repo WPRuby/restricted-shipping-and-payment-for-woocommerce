@@ -50,7 +50,7 @@ abstract class RSPW_Meta_Box {
 				<li>» Total Cart Quantity</li>
 
 			</ul>
-			<a href="https://wpruby.com/plugin/woocommerce-restricted-shipping-payment-pro/" class="button wpruby_button" target="_blank"><span class="dashicons dashicons-star-filled"></span> Upgrade Now</a>
+			<a href="https://wpruby.com/plugin/woocommerce-restricted-shipping-payment-pro/?utm_source=restricted-lite&utm_medium=widget&utm_campaign=freetopro" class="button wpruby_button" target="_blank"><span class="dashicons dashicons-star-filled"></span> Upgrade Now</a>
 		</div>
 		<?php
 	}
