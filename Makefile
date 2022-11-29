@@ -1,2 +1,2 @@
 pack:
-	-rm -f restricted-shipping-and-payment-for-woocommerce.zip && git archive --prefix=restricted-shipping-and-payment-for-woocommerce/ -o restricted-shipping-and-payment-for-woocommerce.zip HEAD;
+	-rm -f wc-restricted-shipping-and-payment.zip && git archive --prefix=wc-restricted-shipping-and-payment/ -o wc-restricted-shipping-and-payment.zip HEAD;
