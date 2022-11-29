@@ -25,6 +25,7 @@ class RSPW_Cart_Total_Rule implements RSPW_Rule {
 		return array(
 			RSPW_Operators_Factory::OPERATOR_LT    => __( 'less than', 'restricted-shipping-and-payment-for-woocommerce' ),
 			RSPW_Operators_Factory::OPERATOR_EQUAL => __( 'equal to', 'restricted-shipping-and-payment-for-woocommerce' ),
+			RSPW_Operators_Factory::OPERATOR_NOT_EQUAL => __( 'not equal to', 'restricted-shipping-and-payment-for-woocommerce' ),
 			RSPW_Operators_Factory::OPERATOR_GT    => __( 'more than', 'restricted-shipping-and-payment-for-woocommerce' ),
 		);
 	}
