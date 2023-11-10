@@ -3,11 +3,11 @@ Contributors: waseem_senjer, wprubyplugins
 Donate link: https://wpruby.com
 Tags: conditional shipping, conditional payments, woocommerce, shipping, admin, payment, payment gateways, shipping method
 Requires at least: 4.0
-Tested up to: 6.0.1
+Tested up to: 6.4
 Requires PHP: 5.6
 WC requires at least: 3.0
-WC tested up to: 7.0
-Stable tag: 1.0.10
+WC tested up to: 8.2
+Stable tag: 1.0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,13 @@ The following rules are available:
 2. Excluding Direct Bank Transfer if the Cart Total is less than 400$ or the billing country is the United Kingdom.
 
 == Changelog ==
+
+= 1.0.11 =
+* Added: WordPress 6.4 compatibility.
+* Added: WooCommerce 8.2 compatibility.
+* Added: Declaring WooCommerce HPOS compatibility.
+* Fixed: Fix billing country rule.
+
 = 1.0.10 =
 * Added: WordPress 6.3 compatibility.
 * Added: WooCommerce 8.0 compatibility.
