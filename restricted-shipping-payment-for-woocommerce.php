@@ -115,6 +115,11 @@ class RSPW_Bootstrap {
 	}
 }
 
+add_action( 'before_woocommerce_init', function() {
+    if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+    }
+} );
 
 /** initiate the plugin */
 RSPW_Bootstrap::get_instance()->run();
