@@ -11,11 +11,11 @@ class RSPW_Billing_Country_Rule implements RSPW_Rule {
 	 * @return boolean
 	 */
 	public function validate( $rule, $package ) {
-		$rule_billing_country    = $rule['value_shipping_country'];
+		$rule_billing_country    = $rule['value_billing_country'];
 		$package_billing_country = WC()->customer->get_country();
 
 		$operator = RSPW_Operators_Factory::make( $rule['operator'] );
-		return ! $operator->match( $package_billing_country, $rule_billing_country );
+		return $operator->match( $package_billing_country, $rule_billing_country );
 	}
 
 	/**
