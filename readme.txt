@@ -6,8 +6,8 @@ Requires at least: 4.0
 Tested up to: 6.4
 Requires PHP: 5.6
 WC requires at least: 3.0
-WC tested up to: 8.2
-Stable tag: 1.0.11
+WC tested up to: 8.5
+Stable tag: 1.0.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,10 @@ The following rules are available:
 2. Excluding Direct Bank Transfer if the Cart Total is less than 400$ or the billing country is the United Kingdom.
 
 == Changelog ==
+
+= 1.0.12 =
+* Fixed: Shipping classes issue for variable products.
+* Added: WooCommerce 8.5 compatibility.
 
 = 1.0.11 =
 * Added: WordPress 6.4 compatibility.
