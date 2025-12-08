@@ -9,7 +9,7 @@
  * Plugin Name:       Conditional Payments and Shipping for WooCommerce
  * Plugin URI:        https://wpruby.com
  * Description:       Add conditions and rules to enable/disable your WooCommerce shipping methods and Payment gateways.
- * Version:           1.0.14
+ * Version:           1.0.15
  * WC requires at least: 3.0
  * WC tested up to: 9.4
  * Author:            WPRuby
