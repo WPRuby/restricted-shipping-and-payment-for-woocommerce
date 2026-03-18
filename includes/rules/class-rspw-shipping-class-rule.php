@@ -16,18 +16,25 @@ class RSPW_Shipping_Class_Rule implements RSPW_Rule {
 		$cart_shipping_classes = [];
 		foreach ( $package['contents'] as $item_id => $content ) {
 
-            if (!isset($content['data'])) continue;
-            /** @var WC_Product $product */
-            $product    = $content['data'];
-            $product_id = $product->get_id();
-            $parent_id  = $product->get_parent_id();
-
-            if ( $parent_id > 0 ) {
-                $product_id = $parent_id;
+            if ( empty( $content['data'] ) || ! $content['data'] instanceof WC_Product ) {
+                continue;
             }
 
-            $product = wc_get_product($product_id);
-            $cart_shipping_classes[] = $product->get_shipping_class();
+            /** @var WC_Product $product */
+            $product = $content['data'];
+            $shipping_class = $product->get_shipping_class();
+
+            if ( '' === $shipping_class && $product->get_parent_id() >0 ) {
+                $parent_product = wc_get_product( $product->get_parent_id() );
+
+                if ( $parent_product instanceof WC_Product ) {
+                    $shipping_class = $parent_product->get_shipping_class();
+                }
+            }
+
+            if ( '' !== $shipping_class ) {
+                $cart_shipping_classes[] = $shipping_class;
+            }
 
 		}
 
