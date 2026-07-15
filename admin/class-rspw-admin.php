@@ -143,16 +143,28 @@ class RSPW_Admin {
 	 * @return bool
 	 */
 	public function get_rule_type_operators() {
-		$operators_field_nonce = ( isset( $_POST['_nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['_nonce'] ) ) : null;
-		if ( is_null( $operators_field_nonce ) || ! wp_verify_nonce( $operators_field_nonce, 'get_rule_type_operators' ) ) {
-			print 'Sorry, your nonce did not verify.';
-			exit;
-		}
+		check_ajax_referer( 'get_rule_type_operators', '_nonce' );
+
+		$post_id        = isset( $_POST['postID'] ) ? absint( wp_unslash( $_POST['postID'] ) ) : 0;
+		$index          = isset( $_POST['index'] ) ? absint( wp_unslash( $_POST['index'] ) ) : 0;
 		$rule_type      = isset( $_POST['rule_type'] ) ? sanitize_text_field( wp_unslash( $_POST['rule_type'] ) ) : '';
-		$post_id        = isset( $_POST['postID'] ) ? sanitize_text_field( wp_unslash( intval( $_POST['postID'] ) ) ) : '';
-		$index          = isset( $_POST['index'] ) ? sanitize_text_field( wp_unslash( intval( $_POST['index'] ) ) ) : '';
-		$condition_type = isset( $_POST['condition_type'] ) ? sanitize_text_field( wp_unslash( $_POST['condition_type'] ) ) : '';
-		$rules          = get_post_meta((int) $post_id, $condition_type . '_condition_rules', true );
+		$condition_type = isset( $_POST['condition_type'] ) ? sanitize_key( wp_unslash( $_POST['condition_type'] ) ) : '';
+
+		$allowed_post_types = array(
+			'shipping' => RSPW_SHIPPING_CONDITION,
+			'payment'  => RSPW_PAYMENT_CONDITION,
+		);
+
+		if ( ! $post_id || ! isset( $allowed_post_types[ $condition_type ] ) ) {
+			wp_die( -1, 403 );
+		}
+
+		$post = get_post( $post_id );
+		if ( ! $post || $allowed_post_types[ $condition_type ] !== $post->post_type || ! current_user_can( 'edit_post', $post_id ) ) {
+			wp_die( -1, 403 );
+		}
+
+		$rules = get_post_meta( $post_id, $condition_type . '_condition_rules', true );
 		return $this->print_rules( $rules, $index, $rule_type );
 	}
 
