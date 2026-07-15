@@ -3,11 +3,11 @@ Contributors: waseem_senjer, wprubyplugins
 Donate link: https://wpruby.com
 Tags: conditional shipping, conditional payments, woocommerce, payment gateways, shipping method
 Requires at least: 4.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 5.6
 WC requires at least: 3.0
 WC tested up to: 10.3
-Stable tag: 1.0.15
+Stable tag: 1.0.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,9 @@ The following rules are available:
 2. Excluding Direct Bank Transfer if the Cart Total is less than 400$ or the billing country is the United Kingdom.
 
 == Changelog ==
+
+= 1.0.16 =
+* Fixed: Missing authorization check in the get_rule_type_operators AJAX handler that could allow contributors to read shipping and payment condition configuration from posts they do not own.
 
 = 1.0.15 =
 * Added: WordPress 6.9 compatibility.
@@ -112,6 +115,9 @@ The following rules are available:
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.0.16 =
+Security update. Fixes a missing authorization check in an admin AJAX handler.
 
 = 1.0.0 =
 Initial release
