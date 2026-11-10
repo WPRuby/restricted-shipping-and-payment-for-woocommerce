@@ -76,58 +76,93 @@ final class Branding {
 	}
 
 	public function render_pro_box(): void {
-		// The Pro version's rules that this plugin doesn't have, by topic.
-		$rules = array(
-			__( 'Location', 'restricted-shipping-and-payment-for-woocommerce' ) => array(
-				__( 'Postcode', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'City', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'State', 'restricted-shipping-and-payment-for-woocommerce' ),
+		// The Pro version's rules that this plugin doesn't have, by topic. The rule names show as each topic's tooltip.
+		$groups = array(
+			array(
+				'label' => __( 'Location', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'icon'  => 'dashicons-location',
+				'rules' => array(
+					__( 'Postcode', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'City', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'State', 'restricted-shipping-and-payment-for-woocommerce' ),
+				),
 			),
-			__( 'Products', 'restricted-shipping-and-payment-for-woocommerce' ) => array(
-				__( 'Product', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Product Category', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Product Tag', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Product Attribute', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Downloadable', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Virtual', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Total Cart Quantity', 'restricted-shipping-and-payment-for-woocommerce' ),
+			array(
+				'label' => __( 'Products', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'icon'  => 'dashicons-products',
+				'rules' => array(
+					__( 'Product', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Product Category', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Product Tag', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Product Attribute', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Downloadable', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Virtual', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Total Cart Quantity', 'restricted-shipping-and-payment-for-woocommerce' ),
+				),
 			),
-			__( 'Customer', 'restricted-shipping-and-payment-for-woocommerce' ) => array(
-				__( 'Customer Role', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Logged In or Guest', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Previous Orders', 'restricted-shipping-and-payment-for-woocommerce' ),
+			array(
+				'label' => __( 'Customer', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'icon'  => 'dashicons-admin-users',
+				'rules' => array(
+					__( 'Customer Role', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Logged In or Guest', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Previous Orders', 'restricted-shipping-and-payment-for-woocommerce' ),
+				),
 			),
-			__( 'Checkout', 'restricted-shipping-and-payment-for-woocommerce' ) => array(
-				__( 'Payment Gateway', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Shipping Method', 'restricted-shipping-and-payment-for-woocommerce' ),
+			array(
+				'label' => __( 'Checkout', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'icon'  => 'dashicons-cart',
+				'rules' => array(
+					__( 'Payment Gateway', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Shipping Method', 'restricted-shipping-and-payment-for-woocommerce' ),
+				),
 			),
-			__( 'Date and time', 'restricted-shipping-and-payment-for-woocommerce' ) => array(
-				__( 'Time of Day', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Day of Week', 'restricted-shipping-and-payment-for-woocommerce' ),
-				__( 'Date', 'restricted-shipping-and-payment-for-woocommerce' ),
+			array(
+				'label' => __( 'Date and time', 'restricted-shipping-and-payment-for-woocommerce' ),
+				'icon'  => 'dashicons-calendar-alt',
+				'rules' => array(
+					__( 'Time of Day', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Day of Week', 'restricted-shipping-and-payment-for-woocommerce' ),
+					__( 'Date', 'restricted-shipping-and-payment-for-woocommerce' ),
+				),
 			),
 		);
 
 		$features = array(
-			__( 'Combine rules with AND and OR', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'Show methods only when the rules match', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'Messages for customers at checkout', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'Condition priorities', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'Debugger for store managers', 'restricted-shipping-and-payment-for-woocommerce' ),
+			__( 'AND / OR rule groups', 'restricted-shipping-and-payment-for-woocommerce' ),
+			__( 'Show-only conditions', 'restricted-shipping-and-payment-for-woocommerce' ),
+			__( 'Messages at checkout', 'restricted-shipping-and-payment-for-woocommerce' ),
+			__( 'Priorities and debugger', 'restricted-shipping-and-payment-for-woocommerce' ),
+		);
+
+		$count = array_sum(
+			array_map(
+				static function ( array $group ): int {
+					return count( $group['rules'] );
+				},
+				$groups
+			)
 		);
 		?>
 		<div class="rspw-support rspw-pro">
-			<p><?php esc_html_e( 'Pro adds more rules:', 'restricted-shipping-and-payment-for-woocommerce' ); ?></p>
-			<dl class="rspw-pro__rules">
-				<?php foreach ( $rules as $group => $names ) : ?>
-					<dt><?php echo esc_html( $group ); ?></dt>
-					<dd><?php echo esc_html( wp_sprintf( '%l', $names ) ); ?></dd>
+			<p class="rspw-pro__headline">
+				<?php
+				/* translators: %d: number of rules. */
+				echo esc_html( sprintf( _n( '%d more rule', '%d more rules', $count, 'restricted-shipping-and-payment-for-woocommerce' ), $count ) );
+				?>
+			</p>
+			<ul class="rspw-pro__groups">
+				<?php foreach ( $groups as $group ) : ?>
+					<?php $rules = wp_sprintf( '%l', $group['rules'] ); ?>
+					<li title="<?php echo esc_attr( $rules ); ?>">
+						<span class="dashicons <?php echo esc_attr( $group['icon'] ); ?>" aria-hidden="true"></span><?php echo esc_html( $group['label'] ); ?>
+						<span class="screen-reader-text">: <?php echo esc_html( $rules ); ?></span>
+					</li>
 				<?php endforeach; ?>
-			</dl>
-			<p><?php esc_html_e( 'And more control:', 'restricted-shipping-and-payment-for-woocommerce' ); ?></p>
-			<ul class="rspw-pro-rules">
+			</ul>
+			<ul class="rspw-pro__features">
 				<?php foreach ( $features as $feature ) : ?>
-					<li><?php echo esc_html( $feature ); ?></li>
+					<li><span class="dashicons dashicons-yes" aria-hidden="true"></span><?php echo esc_html( $feature ); ?></li>
 				<?php endforeach; ?>
 			</ul>
 			<a href="<?php echo esc_url( self::PRO_URL ); ?>" class="button button-primary rspw-pro-button" target="_blank" rel="noopener noreferrer">

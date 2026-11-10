@@ -113,26 +113,53 @@
 
 
 /* Upgrade to Pro box in the condition editor sidebar. */
-.rspw-support .rspw-pro-rules {
-	margin: 0 0 12px 1.25em;
-	list-style: disc;
-}
-
-.rspw-support .rspw-pro-rules li {
-	margin: 0 0 4px;
-}
-
-.rspw-pro__rules {
-	margin: 0 0 12px;
-}
-
-.rspw-pro__rules dt {
+.rspw-pro .rspw-pro__headline {
+	margin: 0 0 10px;
+	color: #1d2327;
+	font-size: 14px;
 	font-weight: 600;
 }
 
-.rspw-pro__rules dd {
-	margin: 0 0 8px;
-	color: #50575e;
+.rspw-pro .rspw-pro__groups {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 0 0 14px;
+}
+
+.rspw-pro .rspw-pro__groups li {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	margin: 0;
+	padding: 3px 8px;
+	border-radius: 12px;
+	background: #f0f0f1;
+	color: #1d2327;
+	font-size: 12px;
+	cursor: help;
+}
+
+.rspw-pro .rspw-pro__groups .dashicons {
+	color: #e0115f;
+}
+
+.rspw-pro .rspw-pro__features {
+	margin: 0 0 14px;
+}
+
+.rspw-pro .rspw-pro__features li {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	margin: 0 0 4px;
+}
+
+.rspw-pro .rspw-pro__features .dashicons {
+	color: #008a20;
+	font-size: 20px;
+	width: 20px;
+	height: 20px;
 }
 
 .rspw-support .rspw-pro-button {
