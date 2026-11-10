@@ -113,24 +113,27 @@
 
 
 /* Upgrade to Pro box in the condition editor sidebar. */
-.rspw-pro-rules {
+.rspw-support .rspw-pro-rules {
 	margin: 0 0 12px 1.25em;
 	list-style: disc;
 }
 
-.rspw-pro-rules li {
+.rspw-support .rspw-pro-rules li {
 	margin: 0 0 4px;
 }
 
 .rspw-support .rspw-pro-button {
 	display: flex;
+	align-items: center;
 	justify-content: center;
-	gap: 4px;
+	gap: 6px;
 	width: 100%;
 }
 
 .rspw-support .rspw-pro-button .dashicons {
-	align-self: center;
+	margin: 0;
+	line-height: 1;
+	vertical-align: middle;
 }
 
 /* Conditions list. */
