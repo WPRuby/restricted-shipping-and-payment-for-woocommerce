@@ -76,7 +76,7 @@ final class Branding {
 	}
 
 	public function render_pro_box(): void {
-		// The Pro version's rules that this plugin doesn't have, by topic. The rule names show as each topic's tooltip.
+		// The Pro version's rules that this plugin doesn't have, by topic. Each topic shows its rules in a tooltip.
 		$groups = array(
 			array(
 				'label' => __( 'Location', 'restricted-shipping-and-payment-for-woocommerce' ),
@@ -152,11 +152,12 @@ final class Branding {
 				?>
 			</p>
 			<ul class="rspw-pro__groups">
-				<?php foreach ( $groups as $group ) : ?>
-					<?php $rules = wp_sprintf( '%l', $group['rules'] ); ?>
-					<li title="<?php echo esc_attr( $rules ); ?>">
-						<span class="dashicons <?php echo esc_attr( $group['icon'] ); ?>" aria-hidden="true"></span><?php echo esc_html( $group['label'] ); ?>
-						<span class="screen-reader-text">: <?php echo esc_html( $rules ); ?></span>
+				<?php foreach ( $groups as $index => $group ) : ?>
+					<li>
+						<button type="button" class="rspw-pro__chip" aria-describedby="rspw-pro-tip-<?php echo (int) $index; ?>">
+							<span class="dashicons <?php echo esc_attr( $group['icon'] ); ?>" aria-hidden="true"></span><?php echo esc_html( $group['label'] ); ?>
+						</button>
+						<span class="rspw-pro__tip" role="tooltip" id="rspw-pro-tip-<?php echo (int) $index; ?>"><?php echo esc_html( wp_sprintf( '%l', $group['rules'] ) ); ?></span>
 					</li>
 				<?php endforeach; ?>
 			</ul>
