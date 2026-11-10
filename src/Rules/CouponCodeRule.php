@@ -18,9 +18,10 @@ final class CouponCodeRule extends AbstractRule {
 			return false;
 		}
 
-		// Applied coupon codes are formatted (lowercased, entities decoded) by WooCommerce; format the rule's the same way.
-		$codes = array_map( 'wc_format_coupon_code', array_map( 'strval', $rule['value_coupon_code'] ) );
-		return $this->operator( $rule )->match( $codes, $context->get_applied_coupons() );
+		return $this->operator( $rule )->match(
+			array_map( array( $this, 'format_code' ), $rule['value_coupon_code'] ),
+			array_map( array( $this, 'format_code' ), $context->get_applied_coupons() )
+		);
 	}
 
 	public function get_operators_labels(): array {
@@ -39,6 +40,15 @@ final class CouponCodeRule extends AbstractRule {
 				'async' => true,
 			),
 		);
+	}
+
+	/**
+	 * Format a coupon code the way WooCommerce's cart compares them: entities decoded, sanitized and lowercased.
+	 *
+	 * @param mixed $code
+	 */
+	private function format_code( $code ): string {
+		return wc_strtolower( wc_format_coupon_code( (string) $code ) );
 	}
 
 	/**

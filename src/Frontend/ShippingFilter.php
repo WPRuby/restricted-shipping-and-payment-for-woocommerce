@@ -23,12 +23,19 @@ final class ShippingFilter extends ConditionFilter {
 	}
 
 	/**
-	 * Customers' sessions keep their calculated rates until the package or WooCommerce's shipping cache version
-	 * changes. Bump the version so changed conditions apply to those sessions too.
+	 * Changes whenever a shipping condition changes; added to the packages by add_rate_cache_inputs().
+	 */
+	public const VERSION_OPTION = 'rspw_lite_shipping_conditions_version';
+
+	/**
+	 * Customers' sessions keep their calculated rates until the package changes. Change the conditions version,
+	 * which is part of the package, so changed conditions apply to those sessions too.
+	 *
+	 * WooCommerce's own shipping cache version isn't used: in older WooCommerce versions it only changes once a second.
 	 */
 	public function invalidate_rates(): void {
 		$this->flush_conditions();
-		\WC_Cache_Helper::get_transient_version( 'shipping', true );
+		update_option( self::VERSION_OPTION, sprintf( '%.6F', microtime( true ) ) );
 	}
 
 	/**
@@ -59,6 +66,10 @@ final class ShippingFilter extends ConditionFilter {
 		}
 
 		$inputs = array();
+
+		if ( ! empty( $this->get_conditions() ) ) {
+			$inputs['conditions'] = (string) get_option( self::VERSION_OPTION, '' );
+		}
 
 		// Guests are identified by their billing email, which isn't part of the package.
 		if ( WC()->customer && $this->conditions_use_rule( RuleFactory::RULE_CUSTOMER ) ) {
