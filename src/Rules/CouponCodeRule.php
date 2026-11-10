@@ -14,12 +14,13 @@ use WPRuby\RestrictedShippingPaymentLite\Operators\OperatorFactory;
 final class CouponCodeRule extends AbstractRule {
 
 	public function validate( array $rule, Context $context ): bool {
-		$applied = $context->get_applied_coupons();
-		if ( empty( $applied ) || empty( $rule['value_coupon_code'] ) || ! is_array( $rule['value_coupon_code'] ) ) {
+		if ( empty( $rule['value_coupon_code'] ) || ! is_array( $rule['value_coupon_code'] ) ) {
 			return false;
 		}
 
-		return $this->operator( $rule )->match( array_map( 'strtolower', $rule['value_coupon_code'] ), $applied );
+		// Applied coupon codes are formatted (lowercased, entities decoded) by WooCommerce; format the rule's the same way.
+		$codes = array_map( 'wc_format_coupon_code', array_map( 'strval', $rule['value_coupon_code'] ) );
+		return $this->operator( $rule )->match( $codes, $context->get_applied_coupons() );
 	}
 
 	public function get_operators_labels(): array {

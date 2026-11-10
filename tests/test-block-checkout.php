@@ -73,6 +73,32 @@ class WP_Block_Checkout_Test extends RSPW_Checkout_Test_Case {
 		$this->assertSame( array( $flat_rate ), $this->rate_ids( $this->get_cart() ) );
 	}
 
+	/**
+	 * Sessions keep calculated rates; publishing, unpublishing or trashing a condition must still apply to them.
+	 */
+	public function test_condition_changes_apply_to_cached_rates() {
+		list( $flat_rate, $free_shipping ) = $this->rates;
+		$this->add_to_cart( 10 );
+		$this->assertSame( array( $flat_rate, $free_shipping ), $this->rate_ids( $this->get_cart() ) );
+
+		$condition = $this->make_condition( Condition::POST_TYPE_SHIPPING, array( $flat_rate ), array( $this->rule( 'cart_total', 'gt', array( 'value_cart_total' => '0' ) ) ) );
+		$this->assertSame( array( $free_shipping ), $this->rate_ids( $this->get_cart() ) );
+
+		wp_update_post(
+			array(
+				'ID'          => $condition->get_id(),
+				'post_status' => 'draft',
+			)
+		);
+		$this->assertSame( array( $flat_rate, $free_shipping ), $this->rate_ids( $this->get_cart() ) );
+
+		wp_publish_post( $condition->get_id() );
+		$this->assertSame( array( $free_shipping ), $this->rate_ids( $this->get_cart() ) );
+
+		wp_trash_post( $condition->get_id() );
+		$this->assertSame( array( $flat_rate, $free_shipping ), $this->rate_ids( $this->get_cart() ) );
+	}
+
 	private function get_cart(): array {
 		$response = rest_do_request( new WP_REST_Request( 'GET', '/wc/store/v1/cart' ) );
 		$this->assertSame( 200, $response->get_status(), wp_json_encode( $response->get_data() ) );

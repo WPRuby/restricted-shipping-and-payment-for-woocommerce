@@ -14,7 +14,11 @@ use WPRuby\RestrictedShippingPaymentLite\Operators\OperatorFactory;
 final class CustomerRule extends AbstractRule {
 
 	public function validate( array $rule, Context $context ): bool {
-		return $this->operator( $rule )->match( (string) ( $rule['value_customer'] ?? '' ), $context->get_customer_email() );
+		$email = isset( $rule['value_customer'] ) && is_string( $rule['value_customer'] ) ? trim( $rule['value_customer'] ) : '';
+		if ( '' === $email ) {
+			return false;
+		}
+		return $this->operator( $rule )->match( $email, $context->get_customer_email() );
 	}
 
 	public function get_operators_labels(): array {

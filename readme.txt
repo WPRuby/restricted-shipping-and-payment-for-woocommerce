@@ -57,7 +57,12 @@ The following rules are available:
 * Fixed: "more than" rules also matched equal values.
 * Fixed: Customer rule failed for guests; it now uses the billing email they entered.
 * Fixed: Shipping rates were not refreshed when only the billing country or email changed.
-* Fixed: Rules without values could match.
+* Fixed: Adding, changing, disabling or trashing a shipping condition didn't apply to customers whose shipping rates were already calculated.
+* Fixed: Rules without values could match, e.g. a Cart Total rule with an empty amount hid methods for every cart.
+* Fixed: Coupon Code "not included in the order" didn't match carts without any coupon.
+* Fixed: Coupon codes with accented letters didn't match.
+* Fixed: "equal to" Cart Total and Package Weight rules could fail because of decimal rounding, e.g. 3 × 0.1 kg against 0.3 kg.
+* Fixed: Customer "email is not" was case sensitive, unlike "email is".
 * Dev: Requires WordPress 6.6, PHP 7.4 and WooCommerce 8.9 or newer.
 * Dev: Rewritten as namespaced classes; the CMB2 library is no longer bundled. Existing conditions keep working unchanged.
 

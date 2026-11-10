@@ -27,6 +27,20 @@ abstract class AbstractRule implements Rule {
 	}
 
 	/**
+	 * Compare a number from the checkout with the rule's value. Both are rounded first, so sums such as
+	 * 3 × 0.1 kg compare equal to 0.3. A rule without a value never matches.
+	 *
+	 * @param int $precision Decimals kept before comparing.
+	 */
+	protected function compare_numbers( array $rule, string $field_key, float $actual, int $precision ): bool {
+		$value = $rule[ $field_key ] ?? '';
+		if ( ! is_numeric( $value ) ) {
+			return false;
+		}
+		return $this->operator( $rule )->match( round( $actual, $precision ), round( (float) $value, $precision ) );
+	}
+
+	/**
 	 * Options for a field: all of them, the ones matching $search, or only the $include values.
 	 * Searchable (async) fields override get_async_options().
 	 *

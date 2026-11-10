@@ -14,7 +14,7 @@ use WPRuby\RestrictedShippingPaymentLite\Operators\OperatorFactory;
 final class PackageWeightRule extends AbstractRule {
 
 	public function validate( array $rule, Context $context ): bool {
-		return $this->operator( $rule )->match( $context->get_total_weight(), (float) ( $rule['value_package_weight'] ?? 0 ) );
+		return $this->compare_numbers( $rule, 'value_package_weight', $context->get_total_weight(), 6 );
 	}
 
 	public function get_operators_labels(): array {

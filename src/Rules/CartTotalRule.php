@@ -14,7 +14,7 @@ use WPRuby\RestrictedShippingPaymentLite\Operators\OperatorFactory;
 final class CartTotalRule extends AbstractRule {
 
 	public function validate( array $rule, Context $context ): bool {
-		return $this->operator( $rule )->match( $context->get_subtotal(), (float) ( $rule['value_cart_total'] ?? 0 ) );
+		return $this->compare_numbers( $rule, 'value_cart_total', $context->get_subtotal(), wc_get_price_decimals() );
 	}
 
 	public function get_operators_labels(): array {

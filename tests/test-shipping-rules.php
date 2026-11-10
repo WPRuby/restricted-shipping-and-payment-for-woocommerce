@@ -157,25 +157,71 @@ class WP_Shipping_Rules_Test extends WP_UnitTestCase {
 		$this->assertTrue( $rule_class->validate( $rule_input, Context::from_package( $package, array( 'billing_country' => 'GB' ) ) ) );
 	}
 
+	public function test_coupon_not_included_matches_carts_without_coupons() {
+		$rule = RSPW_Tests_Helper::prepare_rule( RuleFactory::RULE_COUPON_CODE, OperatorFactory::OPERATOR_NOT_IN, array( 'vip' ) );
+
+		$package = $this->get_package( array(), array( 'applied_coupons' => array() ) );
+		$this->assertTrue( ( new CouponCodeRule() )->validate( $rule, Context::from_package( $package ) ) );
+
+		$package = $this->get_package( array(), array( 'applied_coupons' => array( 'vip' ) ) );
+		$this->assertFalse( ( new CouponCodeRule() )->validate( $rule, Context::from_package( $package ) ) );
+	}
+
+	public function test_coupon_codes_with_accented_letters() {
+		$rule    = RSPW_Tests_Helper::prepare_rule( RuleFactory::RULE_COUPON_CODE, OperatorFactory::OPERATOR_IN, array( 'ÉTÉ' ) );
+		$package = $this->get_package( array(), array( 'applied_coupons' => array( wc_format_coupon_code( 'ÉTÉ' ) ) ) );
+
+		$this->assertTrue( ( new CouponCodeRule() )->validate( $rule, Context::from_package( $package ) ) );
+	}
+
+	public function test_weight_comparisons_ignore_floating_point_noise() {
+		update_option( 'woocommerce_weight_unit', 'kg' );
+		$rule_class = new PackageWeightRule();
+		// 3 × 0.1 kg is 0.30000000000000004 in floating point.
+		$package = Context::from_package( $this->get_package( array( 'weight' => 0.1 ), array( 'quantity' => 3 ) ) );
+
+		$this->assertTrue( $rule_class->validate( RSPW_Tests_Helper::prepare_rule( RuleFactory::RULE_PACKAGE_WEIGHT, OperatorFactory::OPERATOR_EQUAL, '0.3' ), $package ) );
+		$this->assertFalse( $rule_class->validate( RSPW_Tests_Helper::prepare_rule( RuleFactory::RULE_PACKAGE_WEIGHT, OperatorFactory::OPERATOR_GT, '0.3' ), $package ) );
+	}
+
+	public function test_cart_total_is_compared_in_price_decimals() {
+		$rule = RSPW_Tests_Helper::prepare_rule( RuleFactory::RULE_CART_TOTAL, OperatorFactory::OPERATOR_EQUAL, '0.3' );
+		// 0.1 + 0.2 is 0.30000000000000004 in floating point.
+		$context = new Context( array(), array(), 0, 0.1 + 0.2 );
+
+		$this->assertTrue( ( new CartTotalRule() )->validate( $rule, $context ) );
+
+		$rule['operator'] = OperatorFactory::OPERATOR_NOT_EQUAL;
+		$this->assertFalse( ( new CartTotalRule() )->validate( $rule, $context ) );
+	}
+
+	public function test_customer_email_is_not_ignores_case() {
+		$rule    = RSPW_Tests_Helper::prepare_rule( RuleFactory::RULE_CUSTOMER, OperatorFactory::OPERATOR_IS_NOT, 'Bob@Example.org' );
+		$package = $this->get_package( array(), array( 'customer_id' => 0 ) );
+
+		$this->assertFalse( ( new CustomerRule() )->validate( $rule, Context::from_package( $package, array( 'customer_email' => 'bob@example.org' ) ) ) );
+		$this->assertTrue( ( new CustomerRule() )->validate( $rule, Context::from_package( $package, array( 'customer_email' => 'alice@example.org' ) ) ) );
+	}
+
+	/**
+	 * 1.x saved rules without values; they must not hide anything.
+	 */
 	public function test_rules_without_values_never_match() {
-		$package = Context::from_package( $this->get_package() );
+		$package = Context::from_package( $this->get_package( array(), array( 'customer_id' => 0 ) ), array( 'customer_email' => '' ) );
 
 		foreach ( array_keys( RuleFactory::available_rules() ) as $type ) {
 			$rule = RuleFactory::make( $type );
 			foreach ( array_keys( $rule->get_operators_labels() ) as $operator ) {
-				if ( in_array( $type, array( RuleFactory::RULE_CART_TOTAL, RuleFactory::RULE_PACKAGE_WEIGHT, RuleFactory::RULE_CUSTOMER ), true ) ) {
-					continue; // Compared with 0 or an empty email.
+				foreach ( array( null, '', array() ) as $empty ) {
+					$input = array(
+						'rule_type' => $type,
+						'operator'  => $operator,
+					);
+					if ( ! is_null( $empty ) ) {
+						$input[ $rule->get_value_schema()[0]['key'] ] = $empty;
+					}
+					$this->assertFalse( $rule->validate( $input, $package ), "$type $operator " . wp_json_encode( $empty ) );
 				}
-				$this->assertFalse(
-					$rule->validate(
-						array(
-							'rule_type' => $type,
-							'operator'  => $operator,
-						),
-						$package
-					),
-					"$type $operator"
-				);
 			}
 		}
 	}

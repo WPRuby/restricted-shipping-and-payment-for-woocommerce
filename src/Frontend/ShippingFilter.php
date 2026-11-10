@@ -17,6 +17,28 @@ final class ShippingFilter extends ConditionFilter {
 	public function register(): void {
 		add_filter( 'woocommerce_package_rates', array( $this, 'exclude_package_shipping_methods' ), 10, 2 );
 		add_filter( 'woocommerce_cart_shipping_packages', array( $this, 'add_rate_cache_inputs' ) );
+		// Fires when a condition is created, updated, published, unpublished, trashed or restored.
+		add_action( 'save_post_' . Condition::POST_TYPE_SHIPPING, array( $this, 'invalidate_rates' ) );
+		add_action( 'deleted_post', array( $this, 'invalidate_rates_on_delete' ), 10, 2 );
+	}
+
+	/**
+	 * Customers' sessions keep their calculated rates until the package or WooCommerce's shipping cache version
+	 * changes. Bump the version so changed conditions apply to those sessions too.
+	 */
+	public function invalidate_rates(): void {
+		$this->flush_conditions();
+		\WC_Cache_Helper::get_transient_version( 'shipping', true );
+	}
+
+	/**
+	 * @param int           $post_id
+	 * @param \WP_Post|null $post
+	 */
+	public function invalidate_rates_on_delete( $post_id, $post = null ): void {
+		if ( $post instanceof \WP_Post && Condition::POST_TYPE_SHIPPING === $post->post_type ) {
+			$this->invalidate_rates();
+		}
 	}
 
 	protected function get_post_type(): string {
