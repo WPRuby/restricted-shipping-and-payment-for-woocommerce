@@ -122,6 +122,19 @@
 	margin: 0 0 4px;
 }
 
+.rspw-pro__rules {
+	margin: 0 0 12px;
+}
+
+.rspw-pro__rules dt {
+	font-weight: 600;
+}
+
+.rspw-pro__rules dd {
+	margin: 0 0 8px;
+	color: #50575e;
+}
+
 .rspw-support .rspw-pro-button {
 	display: flex;
 	align-items: center;

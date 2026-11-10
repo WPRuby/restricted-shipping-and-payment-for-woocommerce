@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-10T10:50:39+00:00\n"
+"POT-Creation-Date: 2026-11-10T11:35:01+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: restricted-shipping-and-payment-for-woocommerce\n"
@@ -45,12 +45,12 @@ msgid "Plugin help"
 msgstr ""
 
 #: src/Admin/Branding.php:64
-#: src/Admin/Branding.php:134
+#: src/Admin/Branding.php:169
 msgid "Documentation"
 msgstr ""
 
 #: src/Admin/Branding.php:65
-#: src/Admin/Branding.php:135
+#: src/Admin/Branding.php:170
 msgid "Support"
 msgstr ""
 
@@ -58,59 +58,141 @@ msgstr ""
 msgid "Upgrade To Pro"
 msgstr ""
 
-#: src/Admin/Branding.php:80
-msgid "Postcode"
-msgstr ""
-
 #: src/Admin/Branding.php:81
-msgid "City"
+msgid "Location"
 msgstr ""
 
 #: src/Admin/Branding.php:82
-msgid "State"
+msgid "Postcode"
 msgstr ""
 
 #: src/Admin/Branding.php:83
-msgid "Product Category"
+msgid "City"
 msgstr ""
 
 #: src/Admin/Branding.php:84
-msgid "Product Tag"
-msgstr ""
-
-#: src/Admin/Branding.php:85
-msgid "Product Attribute"
+msgid "State"
 msgstr ""
 
 #: src/Admin/Branding.php:86
-msgid "Downloadable"
+msgid "Products"
 msgstr ""
 
 #: src/Admin/Branding.php:87
-msgid "Virtual"
+msgid "Product"
 msgstr ""
 
 #: src/Admin/Branding.php:88
-msgid "Total Cart Quantity"
+msgid "Product Category"
+msgstr ""
+
+#: src/Admin/Branding.php:89
+msgid "Product Tag"
+msgstr ""
+
+#: src/Admin/Branding.php:90
+msgid "Product Attribute"
+msgstr ""
+
+#: src/Admin/Branding.php:91
+msgid "Downloadable"
 msgstr ""
 
 #: src/Admin/Branding.php:92
-msgid "If you would like to have more rules:"
+msgid "Virtual"
 msgstr ""
 
-#: src/Admin/Branding.php:99
-msgid "Upgrade Now"
+#: src/Admin/Branding.php:93
+msgid "Total Cart Quantity"
+msgstr ""
+
+#: src/Admin/Branding.php:95
+#: src/Rules/RuleFactory.php:73
+msgid "Customer"
+msgstr ""
+
+#: src/Admin/Branding.php:96
+msgid "Customer Role"
+msgstr ""
+
+#: src/Admin/Branding.php:97
+msgid "Logged In or Guest"
+msgstr ""
+
+#: src/Admin/Branding.php:98
+msgid "Previous Orders"
+msgstr ""
+
+#: src/Admin/Branding.php:100
+msgid "Checkout"
+msgstr ""
+
+#: src/Admin/Branding.php:101
+msgid "Payment Gateway"
+msgstr ""
+
+#: src/Admin/Branding.php:102
+msgid "Shipping Method"
+msgstr ""
+
+#: src/Admin/Branding.php:104
+msgid "Date and time"
+msgstr ""
+
+#: src/Admin/Branding.php:105
+msgid "Time of Day"
+msgstr ""
+
+#: src/Admin/Branding.php:106
+msgid "Day of Week"
+msgstr ""
+
+#: src/Admin/Branding.php:107
+#: src/Admin/ConditionsList.php:34
+msgid "Date"
+msgstr ""
+
+#: src/Admin/Branding.php:112
+msgid "Combine rules with AND and OR"
+msgstr ""
+
+#: src/Admin/Branding.php:113
+msgid "Show methods only when the rules match"
 msgstr ""
 
 #: src/Admin/Branding.php:114
-msgid "Shipping conditions"
+msgid "Messages for customers at checkout"
 msgstr ""
 
 #: src/Admin/Branding.php:115
+msgid "Condition priorities"
+msgstr ""
+
+#: src/Admin/Branding.php:116
+msgid "Debugger for store managers"
+msgstr ""
+
+#: src/Admin/Branding.php:120
+msgid "Pro adds more rules:"
+msgstr ""
+
+#: src/Admin/Branding.php:127
+msgid "And more control:"
+msgstr ""
+
+#: src/Admin/Branding.php:134
+msgid "Upgrade Now"
+msgstr ""
+
+#: src/Admin/Branding.php:149
+msgid "Shipping conditions"
+msgstr ""
+
+#: src/Admin/Branding.php:150
 msgid "Payment conditions"
 msgstr ""
 
-#: src/Admin/Branding.php:146
+#: src/Admin/Branding.php:181
 msgid "(opens in a new tab)"
 msgstr ""
 
@@ -136,10 +218,6 @@ msgstr ""
 
 #: src/Admin/ConditionsList.php:33
 msgid "When"
-msgstr ""
-
-#: src/Admin/ConditionsList.php:34
-msgid "Date"
 msgstr ""
 
 #: src/Admin/ConditionsList.php:57
@@ -272,29 +350,29 @@ msgstr ""
 msgid "Cart total"
 msgstr ""
 
-#: src/Rules/CouponCodeRule.php:27
+#: src/Rules/CouponCodeRule.php:28
 #: src/Rules/ShippingClassRule.php:31
 msgid "included in the order"
 msgstr ""
 
-#: src/Rules/CouponCodeRule.php:28
+#: src/Rules/CouponCodeRule.php:29
 #: src/Rules/ShippingClassRule.php:32
 msgid "not included in the order"
 msgstr ""
 
-#: src/Rules/CouponCodeRule.php:37
+#: src/Rules/CouponCodeRule.php:38
 msgid "Coupon codes"
 msgstr ""
 
-#: src/Rules/CustomerRule.php:22
+#: src/Rules/CustomerRule.php:26
 msgid "email is"
 msgstr ""
 
-#: src/Rules/CustomerRule.php:23
+#: src/Rules/CustomerRule.php:27
 msgid "email is not"
 msgstr ""
 
-#: src/Rules/CustomerRule.php:32
+#: src/Rules/CustomerRule.php:36
 msgid "Customer email"
 msgstr ""
 
@@ -324,10 +402,6 @@ msgstr ""
 
 #: src/Rules/RuleFactory.php:69
 msgid "Billing Country"
-msgstr ""
-
-#: src/Rules/RuleFactory.php:73
-msgid "Customer"
 msgstr ""
 
 #: src/Rules/ShippingClassRule.php:41

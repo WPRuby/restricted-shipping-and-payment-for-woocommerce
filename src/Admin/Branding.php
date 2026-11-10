@@ -76,23 +76,58 @@ final class Branding {
 	}
 
 	public function render_pro_box(): void {
+		// The Pro version's rules that this plugin doesn't have, by topic.
 		$rules = array(
-			__( 'Postcode', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'City', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'State', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'Product Category', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'Product Tag', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'Product Attribute', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'Downloadable', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'Virtual', 'restricted-shipping-and-payment-for-woocommerce' ),
-			__( 'Total Cart Quantity', 'restricted-shipping-and-payment-for-woocommerce' ),
+			__( 'Location', 'restricted-shipping-and-payment-for-woocommerce' ) => array(
+				__( 'Postcode', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'City', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'State', 'restricted-shipping-and-payment-for-woocommerce' ),
+			),
+			__( 'Products', 'restricted-shipping-and-payment-for-woocommerce' ) => array(
+				__( 'Product', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Product Category', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Product Tag', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Product Attribute', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Downloadable', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Virtual', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Total Cart Quantity', 'restricted-shipping-and-payment-for-woocommerce' ),
+			),
+			__( 'Customer', 'restricted-shipping-and-payment-for-woocommerce' ) => array(
+				__( 'Customer Role', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Logged In or Guest', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Previous Orders', 'restricted-shipping-and-payment-for-woocommerce' ),
+			),
+			__( 'Checkout', 'restricted-shipping-and-payment-for-woocommerce' ) => array(
+				__( 'Payment Gateway', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Shipping Method', 'restricted-shipping-and-payment-for-woocommerce' ),
+			),
+			__( 'Date and time', 'restricted-shipping-and-payment-for-woocommerce' ) => array(
+				__( 'Time of Day', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Day of Week', 'restricted-shipping-and-payment-for-woocommerce' ),
+				__( 'Date', 'restricted-shipping-and-payment-for-woocommerce' ),
+			),
+		);
+
+		$features = array(
+			__( 'Combine rules with AND and OR', 'restricted-shipping-and-payment-for-woocommerce' ),
+			__( 'Show methods only when the rules match', 'restricted-shipping-and-payment-for-woocommerce' ),
+			__( 'Messages for customers at checkout', 'restricted-shipping-and-payment-for-woocommerce' ),
+			__( 'Condition priorities', 'restricted-shipping-and-payment-for-woocommerce' ),
+			__( 'Debugger for store managers', 'restricted-shipping-and-payment-for-woocommerce' ),
 		);
 		?>
-		<div class="rspw-support">
-			<p><?php esc_html_e( 'If you would like to have more rules:', 'restricted-shipping-and-payment-for-woocommerce' ); ?></p>
+		<div class="rspw-support rspw-pro">
+			<p><?php esc_html_e( 'Pro adds more rules:', 'restricted-shipping-and-payment-for-woocommerce' ); ?></p>
+			<dl class="rspw-pro__rules">
+				<?php foreach ( $rules as $group => $names ) : ?>
+					<dt><?php echo esc_html( $group ); ?></dt>
+					<dd><?php echo esc_html( wp_sprintf( '%l', $names ) ); ?></dd>
+				<?php endforeach; ?>
+			</dl>
+			<p><?php esc_html_e( 'And more control:', 'restricted-shipping-and-payment-for-woocommerce' ); ?></p>
 			<ul class="rspw-pro-rules">
-				<?php foreach ( $rules as $rule ) : ?>
-					<li><?php echo esc_html( $rule ); ?></li>
+				<?php foreach ( $features as $feature ) : ?>
+					<li><?php echo esc_html( $feature ); ?></li>
 				<?php endforeach; ?>
 			</ul>
 			<a href="<?php echo esc_url( self::PRO_URL ); ?>" class="button button-primary rspw-pro-button" target="_blank" rel="noopener noreferrer">
