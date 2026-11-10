@@ -2,12 +2,12 @@
 Contributors: waseem_senjer, wprubyplugins
 Donate link: https://wpruby.com
 Tags: conditional shipping, conditional payments, woocommerce, payment gateways, shipping method
-Requires at least: 4.0
+Requires at least: 6.6
 Tested up to: 7.1
-Requires PHP: 5.6
-WC requires at least: 5.0
+Requires PHP: 7.4
+WC requires at least: 8.9
 WC tested up to: 11.0
-Stable tag: 1.0.17
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,23 @@ The following rules are available:
 2. Excluding Direct Bank Transfer if the Cart Total is less than 400$ or the billing country is the United Kingdom.
 
 == Changelog ==
+
+= 2.0.0 =
+* Changed: New condition editor. Choose the shipping methods or payment gateways to hide, then add rules; searchable lists replace the old select boxes and the condition is checked before publishing.
+* Changed: The conditions lists show what each condition hides and its rules.
+* Changed: Conditions can only be viewed and edited by store managers and administrators.
+* Added: Support for the WooCommerce Cart and Checkout blocks.
+* Fixed: "more than" rules also matched equal values.
+* Fixed: Customer rule failed for guests; it now uses the billing email they entered.
+* Fixed: Shipping rates were not refreshed when only the billing country or email changed.
+* Fixed: Adding, changing, disabling or trashing a shipping condition didn't apply to customers whose shipping rates were already calculated.
+* Fixed: Rules without values could match, e.g. a Cart Total rule with an empty amount hid methods for every cart.
+* Fixed: Coupon Code "not included in the order" didn't match carts without any coupon.
+* Fixed: Coupon codes with accented letters didn't match.
+* Fixed: "equal to" Cart Total and Package Weight rules could fail because of decimal rounding, e.g. 3 × 0.1 kg against 0.3 kg.
+* Fixed: Customer "email is not" was case sensitive, unlike "email is".
+* Dev: Requires WordPress 6.6, PHP 7.4 and WooCommerce 8.9 or newer.
+* Dev: Rewritten as namespaced classes; the CMB2 library is no longer bundled. Existing conditions keep working unchanged.
 
 = 1.0.17 =
 * Added: WooCommerce 11.0 compatibility.
@@ -119,6 +136,9 @@ The following rules are available:
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+New condition editor and Cart and Checkout blocks support. Requires WordPress 6.6, PHP 7.4 and WooCommerce 8.9. Existing conditions keep working.
 
 = 1.0.16 =
 Security update. Fixes a missing authorization check in an admin AJAX handler.

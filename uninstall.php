@@ -28,3 +28,5 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+delete_option( 'rspw_lite_shipping_conditions_version' );

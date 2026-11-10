@@ -1,53 +1,53 @@
-# Restricted Shipping and Payment for WooCommerce 
-**Contributors:** waseem_senjer, wprubyplugins  
-**Donate link:** https://wpruby.com  
-**Tags:** woocommerce, shipping, admin  
-**Requires at least:** 4.0
-**Tested up to:** 5.2 
-**Requires PHP:** 5.6
-**Stable tag:** 2.0.0
-**License:** GPLv2 or later  
-**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+# Conditional Payments and Shipping for WooCommerce
 
-A simplistic plugin for excluding shipping methods based on multiple rules such as shipping class, package weight and cart totals.
+Hide WooCommerce shipping methods and payment gateways when the cart matches any of a condition's rules: cart total, package weight, shipping class, coupon code, shipping or billing country, or customer email.
 
-## Installation 
+- Requires WordPress 6.6+, PHP 7.4+ and WooCommerce 8.9+.
+- Works with the classic checkout and the Cart and Checkout blocks.
+- Release notes are in [readme.txt](readme.txt).
 
-1. Upload `restricted-shipping-and-payment-for-woocommerce.php` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. A new admin menu item `Shipping Conditions` and `Payment Conditions` will be added.
+## Development
 
+```bash
+composer install
+npm ci
+```
 
-## Frequently Asked Questions
-= Which rules are available to restrict payment gateways and shipping methods? =
-The following rules are available:
-*   Cart Total
-*   Coupon Code
-*   Customer
-*   Package Total Weight
-*   Billing Country
-*   Shipping Class
-*   Shipping Country
+### Code layout
 
+| Path | What |
+| --- | --- |
+| `src/` | PHP classes, namespace `WPRuby\RestrictedShippingPaymentLite` (PSR-4). `Plugin` wires everything. |
+| `src/Rules/` | Rule types. Add one by extending `AbstractRule` and listing it in `RuleFactory`. |
+| `client/` | Admin React sources (condition editor), built to `build/`. |
+| `tests/` | PHPUnit tests. |
 
-## Screenshots 
-1. Excluding local pickup shipping method in case the total cart weight is less than 5kg.
-2. Excluding Direct Bank Transfer if the Cart Total is less than 400$ or the billing country is the United Kingdom.
+Conditions keep their data in the same post meta as 1.x (`{shipping,payment}_condition_rules`, `excluded_shipping_methods`, `excluded_payment_gateways`), which the Pro version also reads.
 
+`build/` is committed because release zips are made with `git archive` (`make pack`). After changing `client/`, run:
 
+```bash
+npm run build
+```
 
-## Changelog 
-``
-### 1.0.1
-* FIXED: the plugin security nonce was breaking other plugins.
+### Tests
 
-### 1.0.0 
-* Initial release
+The tests need a MySQL database. `bin/install-wp-tests.sh` installs WordPress, WooCommerce and the WordPress test library (defaults to `/tmp`):
 
+```bash
+bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1 latest latest
+composer test
+```
 
-## Upgrade Notice 
+The fifth and sixth arguments are the WordPress and WooCommerce versions, e.g. `6.6 8.9.3`. Set `WP_TESTS_DIR` and `WP_CORE_DIR` to install elsewhere; the tests read the same variables. Set `WC_HPOS=1` to run the tests with orders in WooCommerce's order tables (HPOS) instead of posts.
 
+### Static analysis and linting
 
-### 1.0.0 
-Initial release
+```bash
+composer phpstan
+npm run lint:js
+```
 
+### Continuous integration
+
+GitHub Actions (`.github/workflows/ci.yml`) runs PHPUnit on PHP 7.4 to 8.3 against several WordPress and WooCommerce versions (one job with HPOS), PHPStan, the JS lint, and checks that `build/` matches `client/`.
