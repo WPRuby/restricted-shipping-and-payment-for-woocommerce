@@ -1,0 +1,17 @@
+# Static analysis: composer phpstan
+# The WordPress extension is loaded by phpstan/extension-installer.
+parameters:
+	level: 6
+	phpVersion: 70400
+	paths:
+		- src
+		- restricted-shipping-payment-for-woocommerce.php
+	scanFiles:
+		- vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+		- vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
+	# WooCommerce objects such as WC()->cart and WC()->customer are typed as always set in the stubs but are
+	# null outside the storefront, and hook arguments are documented but not guaranteed; keep those checks.
+	treatPhpDocTypesAsCertain: false
+	ignoreErrors:
+		# Rules, schemas and options are plain arrays; their shapes are documented in the docblocks.
+		- identifier: missingType.iterableValue

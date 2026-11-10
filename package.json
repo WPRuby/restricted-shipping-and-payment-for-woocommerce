@@ -1,0 +1,15 @@
+{
+  "name": "restricted-shipping-and-payment-for-woocommerce",
+  "private": true,
+  "description": "Admin scripts for Conditional Payments and Shipping for WooCommerce.",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "wp-scripts build condition-editor=./client/condition-editor/index.js",
+    "start": "wp-scripts start condition-editor=./client/condition-editor/index.js",
+    "lint:js": "wp-scripts lint-js client"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.27.0",
+    "typescript": "^5.9.3"
+  }
+}

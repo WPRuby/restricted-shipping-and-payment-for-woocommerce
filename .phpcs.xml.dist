@@ -6,8 +6,7 @@
 	<file>.</file>
 	<exclude-pattern>/vendor/</exclude-pattern>
 	<exclude-pattern>/node_modules/</exclude-pattern>
-	<exclude-pattern>/admin/vendors/cmb-field-select2/</exclude-pattern>
-    <exclude-pattern>/admin/vendors/cmb2</exclude-pattern>
+	<exclude-pattern>/build/</exclude-pattern>
 
 	<!-- How to scan -->
 	<!-- Usage instructions: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage -->
@@ -20,7 +19,7 @@
 
 	<!-- Rules: Check PHP version compatibility -->
 	<!-- https://github.com/PHPCompatibility/PHPCompatibility#sniffing-your-code-for-compatibility-with-specific-php-versions -->
-	<config name="testVersion" value="5.6-"/>
+	<config name="testVersion" value="7.4-"/>
 
 	<!-- Rules: WordPress Coding Standards -->
 	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards -->
@@ -37,13 +36,18 @@
         <exclude name="Squiz.Commenting.ClassComment.Missing"/>
 	    <exclude name="Generic.Commenting.DocComment"/>
 	    <!-- Temporary -->
-
+	    <exclude name="WordPress.Security.NonceVerification.Missing"/>
 
 	</rule>
+	<!-- Classes in src/ follow PSR-4 file names (src/Rules/CartTotalRule.php), not class-*.php. -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>/src/</exclude-pattern>
+	</rule>
+
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<!-- Value: replace the function, class, and variable prefixes used. Separate multiple prefixes with a comma. -->
-			<property name="prefixes" type="array" value="rspw"/>
+			<property name="prefixes" type="array" value="rspw,WPRuby\RestrictedShippingPaymentLite"/>
 		</properties>
 	</rule>
 	<rule ref="WordPress.WP.I18n">

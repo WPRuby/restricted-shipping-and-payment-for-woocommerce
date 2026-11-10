@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  phpunit:
+    name: PHP ${{ matrix.php }} · WP ${{ matrix.wp }} · WC ${{ matrix.wc }}${{ matrix.hpos == '1' && ' · HPOS' || '' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Oldest supported stack.
+          - { php: '7.4', wp: '6.6', wc: '8.9.3' }
+          - { php: '8.0', wp: 'latest', wc: 'latest' }
+          - { php: '8.1', wp: 'latest', wc: 'latest' }
+          - { php: '8.2', wp: 'latest', wc: 'latest' }
+          - { php: '8.3', wp: 'latest', wc: 'latest' }
+          - { php: '8.3', wp: 'latest', wc: 'latest', hpos: '1' }
+          - { php: '8.3', wp: 'latest', wc: '9.9.5' }
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    env:
+      WP_TESTS_DIR: /tmp/wordpress-tests-lib
+      WP_CORE_DIR: /tmp/wordpress
+      WC_HPOS: ${{ matrix.hpos || '0' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysqli
+          coverage: none
+          tools: composer
+
+      - name: Install Subversion
+        run: sudo apt-get update && sudo apt-get install -y subversion
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Install WordPress, WooCommerce and the test library
+        run: bash bin/install-wp-tests.sh wordpress_test root root 127.0.0.1:3306 ${{ matrix.wp }} ${{ matrix.wc }}
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit
+
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: composer
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Run PHPStan
+        run: composer phpstan -- --no-progress --error-format=github
+
+  javascript:
+    name: JavaScript build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint:js
+
+      - name: Build
+        run: npm run build
+
+      # build/ is committed because release zips are made with git archive.
+      - name: Check that build/ matches the sources
+        run: git diff --exit-code -- build

@@ -14,10 +14,7 @@ class RSPW_Tests_Helper {
 				'shipping_classes' => array(),
 				'categories'       => array(),
 				'tags'             => array(),
-				'attributes'       => array(
-					'name'  => 'color',
-					'value' => 'red',
-				),
+				'attribute'        => array(),
 			)
 		);
 		$product = new WC_Product();
@@ -37,7 +34,8 @@ class RSPW_Tests_Helper {
 		if ( isset( $args['shipping_classes'] ) ) {
 			foreach ( $args['shipping_classes'] as $shipping_class ) {
 				$shipping_class = wp_insert_term( $shipping_class, 'product_shipping_class' );
-				wp_add_object_terms( $product->get_id(), $shipping_class['term_id'], 'product_shipping_class' );
+				$product->set_shipping_class_id( $shipping_class['term_id'] );
+				$product->save();
 			}
 		}
 
@@ -48,19 +46,23 @@ class RSPW_Tests_Helper {
 			}
 		}
 
-		if ( isset( $args['attributes'] ) ) {
-			$color_at     = wc_create_attribute(
-				array(
-					'id'   => 1,
-					'name' => 'color',
-				)
-			);
-			$wc_attribute = new WC_Product_Attribute();
-			$wc_attribute->set_id( $color_at );
-			$wc_attribute->set_options( array( $args['attributes']['value'] ) );
-			$attributes = array( $wc_attribute );
-			$product->set_attributes( $attributes );
-			$product->save();
+		if ( count( $args['attribute'] ) > 0 ) {
+			if ( term_exists( $args['attribute']['value'], 'pa_color' ) ) {
+				// Save the possible option value for the attribute which will be used for variation later.
+				wp_set_object_terms( $product->get_id(), $args['attribute']['value'], 'pa_color', true );
+				// Get the term ID.
+				$option_term_id         = get_term_by( 'name', $args['attribute']['value'], 'pa_color' )->term_id;
+				$attributes             = array();
+				$attributes['pa_color'] = array(
+					'name'         => 'pa_color',
+					'value'        => $option_term_id, // Need to be term IDs.
+					'position'     => 1,
+					'is_visible'   => '1',
+					'is_variation' => '0',
+					'is_taxonomy'  => '1',
+				);
+				update_post_meta( $product->get_id(), '_product_attributes', $attributes );
+			}
 		}
 
 		return $product;
