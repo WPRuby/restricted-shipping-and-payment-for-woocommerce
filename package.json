@@ -9,7 +9,7 @@
     "lint:js": "wp-scripts lint-js client"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^30.27.0",
+    "@wordpress/scripts": "^37.1.0",
     "typescript": "^5.9.3"
   }
 }
